@@ -1,0 +1,36 @@
+/* .클래스명 */
+.color-change1 {
+    color: rgb(255, 10, 150) /* RGB 빨,초,파 */
+}
+.color-change2 {
+    color: rgb(67, 11, 199,0.5) /* RGBA 빨, 초, 파, 투명도 */
+}
+.color-change3 {
+    color: #ff0 /* HEX코드 */
+}
+
+.parent {
+    width: 200px;
+    height: 200px;
+    text-decoration: underline overline; /*텍스트 밑줄,취소선, ...*/
+    text-align: center; /*텍스트 정렬*/
+    font-weight: 900; /*굵기*/
+    font-style: italic; /*기울기*/
+    font-size: 20px;
+    background-color: greenyellow;
+    border: 2px solid gray;
+}
+.child { /* em 현재 글꼴 크기와 비교 10px * 2  */
+    width: 2em;
+    height: 2em;
+    font-size: 10px;
+    background-color: #b8f1c6af;
+    border: 2px solid  rgb(219, 46, 167);
+}
+.child { /* % 부모요소의 크기와 비교 200px -> 100px */
+    width: 50%;
+    height: 50%;
+    font-size: 10px;
+    background-color: gray;
+    border: 2px solid red;
+}

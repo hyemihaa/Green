@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>트랜지션</title>
+    <!-- CSS의 프로퍼티 값의 변화가 일정 시간에 걸쳐 일어나도록 해주는 기능 -->
+    <style>
+        div:not(.items) { /* not() 연산자 : <div>태그 - .items 포함하지X */
+            width: 150px;
+            height: 150px;
+            background-color: blanchedalmond;
+            /* transition-property: width, background-color; 트랜지션을 적용할 CSS 속성을 설정 */
+            /* transition-duration: 5s; 트랜지션 지속 시간 (변경되기까지 5초) */
+            /* transition-delay: 2s; 트랜지션 시작되기까지 시간(마우스올리고 2초후 시작) */
+            /* transition-timing-function:ease; 트랜지션이 어떤 속도, 패턴으로 실행될지를 설정  */
+        }
+      /*  div:hover {
+            width: 500px;
+            background-color: lightsalmon;
+        } */
+
+        #trans-late:hover { /* x축 : 50px, y축 : 50px */
+            transform: translate(50px, 50px);
+        }
+        #trans-x:active {
+            transform: translateX(30px);
+        }
+        #trans-y:active {
+            /* transform: translateY(30px); */
+            transform: perspective(300px) translateZ(30px);
+        }
+
+        #scale:active {
+            transform: scaleY(2); /* scale : 지정한 크기 만큼 요소를 확대하거나 축소시킴*/
+        }
+        #skew:active {
+            transform: skew(30deg,30deg); /*skew : 해당하는 요소 비틀어서 왜곡*/
+            transform: rotate(180deg);
+        }
+
+        .items:hover div{
+            transform: translate(500px);
+        }
+
+        #item-1 {
+            transition: all 5s linear;
+        }
+
+        #item-2 {
+            transition: all 5s ease;
+        }  
+        #item-3 {
+            transition: all 5s ease-in;
+        }  
+        #item-4 {
+            transition: all 5s ease-out;
+        }  
+        #item-5 {
+            /* transition-property: all;
+            transition-duration: 5s;
+            transition-timing-function: ease-in-out; ---> 3줄을 아래의 한줄로 사용할 수 있다*/
+            transition: all 5s ease-in-out;
+            
+        }  
+
+    </style>
+</head>
+<body>
+    <div></div>
+    <!-- (img+br)*3 -->
+    <img id="trans-late" src="./organize/다운로드.jpg" alt=""><br>
+    <img id="trans-x" src="./organize/다운로드.jpg" alt=""><br>
+    <img id="trans-y" src="./organize/다운로드.jpg" alt=""><br>
+    <br>
+    
+    <img id="scale" src="organize/다운로드.jpg" alt=""><br>
+    <img id="skew" src="organize/다운로드.jpg" alt=""><br>
+    <br>
+    <div class="items">
+        <h3> linear : 시작과 끝이 동일한 속도</h3>
+        <div id="item-1"></div>
+    
+        <h3> ease : (기본값) 초반 느리게, 끝으로 갈수록 빠르게</h3>
+        <div id="item-2"></div>
+    
+        <h3> ease-in : 점점 빠르게</h3>
+        <div id="item-3"></div>
+    
+        <h3> ease-out : 점점 느리게</h3>
+        <div id="item-4"></div>
+    
+        <h3> ease-in-out : 초반 느리게, 중간에 가장 빠르게, 끝을 느리게</h3>
+        <div id="item-5"></div>
+
+    </div>
+</body>
+</html>

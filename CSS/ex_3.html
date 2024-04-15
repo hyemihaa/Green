@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style> /*CSS를 작성하는 공간*/
+        /*.display-h3 {
+            display: inline;  ->인라인 레벨 요소로 변경-> 박스모델 사용이 불가능
+        } */
+        .display-h3 {
+            display: inline-block; /*인라인 레벨 요소에서 박스모델 사용 가능하도록 변경*/
+        }
+        .display-a, .display-strong {
+            display: block; /*블록레벨 요소로 변경*/
+        }
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: coral;
+            padding: 20px;
+            border: 5px solid red;
+            margin: 50px;
+            /* overflow : 요소의 내용이 상자의 크기를 초과할때 어떻게 처리할지에 대한 속성 */
+            overflow:visible;
+        }
+        .border-box {
+            border-style: double; /* 테두리 스타일 */
+            border-width: 5px; /* 굵기 */
+            border-color:cornflowerblue; /* 색상 */
+        }
+
+        table {
+            width: 600px;
+            border: 1px solid deeppink;
+            text-align: center;
+            background-color:hotpink;          
+        }
+        thead td {
+            border: 1px solid deeppink;
+            background-color: white;
+        }
+        tbody td {
+            border: 1px solid white;
+            background-color: lightpink;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- 블록레벨요소 : 가능한 최대 가로 너비(= 한 줄 전체)를 차지하는 요소 --> 
+    <h3>h3 태그입니다.</h3>
+    <h3 class="display-h3">h3 태그입니다.</h3>
+    <h3>h3 태그입니다.</h3>
+    <hr> <!--가로 밑줄-->
+    <!-- 인라인레벨요소 : 필요한 만큼만 공간 차지, 박스모델 사용 X -->
+    <a href="https://naver.com">네이버로 이동</a>
+    <a href="https://google.com" class="display-a">구글로 이동</a> 
+    <br>
+    <strong class="display-strong">문자를 굵게 해주는 요소</strong>
+    <!-- 태그 : ex) <a></a>  
+         요소 : ex)<a href="https://google.com">구글로 이동</a> -> 태그 + 속성 -->
+    <hr>
+
+    <div class="box">
+        box뭉구랑봄이랑놀고싶다배가고프다집에가고싶댜졸리다자고싶다뭐지안되는거같은데요왜이러지뭐야야아아아ㅏ아아아아아아아ㅏ아아아아아아아아아아아아러ㅏㅏㅇㄹ너ㅣ라너ㅏ
+    </div>
+    <hr>
+    <div class="border-box">
+        box
+    </div>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <td>글번호</td>
+                <td>제목</td>
+                <td>작성자</td>
+                <td>작성일</td>
+                <td>조회수</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>5</td>
+                <td>제목5</td>
+                <td>홍길동</td>
+                <td>2024-04-05</td>
+                <td>55</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>제목4</td>
+                <td>김뭉구</td>
+                <td>2024-04-05</td>
+                <td>5555</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>제목3</td>
+                <td>하봄이</td>
+                <td>2024-04-05</td>
+                <td>7777</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>제목2</td>
+                <td>배고파</td>
+                <td>2024-04-05</td>
+                <td>1599</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>제목1</td>
+                <td>뭉봄이</td>
+                <td>2024-04-05</td>
+                <td>584</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

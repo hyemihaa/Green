@@ -1,0 +1,77 @@
+
+* {
+    margin: 10px;
+    background-color: aliceblue;
+}
+.menu {
+    width: 100%;
+}
+/* 지마켓 소개라인 */
+.menu li {
+    margin: 0;
+    list-style:none;
+    display: inline-block;
+    padding-right: 25px;
+    padding-left: 25px;
+}
+a {
+    text-decoration: none;
+    margin: 0px;
+}
+/* 주식회사지마켓 + 고객센터 */
+.company {
+    padding-top: 15px;
+    overflow: hidden;
+}
+/* 주식회사지마켓 */
+.company-info-box {
+    float: left;   
+    width: 700px;
+}
+button {
+    width: 120px;
+    background-color: white;
+    border-radius: 3px;
+
+}
+button a {
+    background-color: white;
+    text-decoration: none;
+}
+
+/* 고객센터 */
+.cscenter {
+    float: left; 
+    width: 500px;
+}
+span {
+    font-weight: bold;
+}
+/* 판매자서비스 */
+.select {
+    border-radius: 3px;
+    width: 120px;
+    padding: 5px;
+    margin-left: 120px;
+    background-color: white;
+}
+.info-box {
+    width: 1200px;
+}
+.info-box ul {
+    padding-left: 0px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    margin: 0px;
+
+}
+.info-box li {
+    margin-bottom: 0px;
+    list-style: none;
+    display: inline-block;
+    padding-right: 15px;
+}
+.last-box {
+    font-size: small;
+}
+

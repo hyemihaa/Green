@@ -1,0 +1,78 @@
+/* 스타일 코드 폴더 */
+ /*  * : 전체 선택자
+
+* {
+    color: blueviolet;
+    font-size: 30px;
+
+} */
+
+/* 태그 선택자 */
+span {
+    color: cadetblue;
+    font-size: 5px;
+}
+/* 속성 선택자 : [] */
+p[class="p-tag-text"] {
+    color: blue;
+    font-size: 20px;
+}
+/* id 선택자 : #아이디 */
+#p-tag-id {
+    color: brown;
+}
+/* 클래스 선택자 : .클래스 */
+.p-tag-class {
+    color: darksalmon;
+}
+/* 그룹 선택자 : 각각의 선택자를 같이 쓰는거(,으로 구분) */
+#p-tag-id, .p-tag-class {
+    color: rgb(165, 42, 114);
+}
+/* 자식 선택자 : <div>태그 바로 아래 */
+div h4 {    
+    background-color: rgb(235, 255, 179);
+}
+ /* 후손 선택자 : <div>태그 아래 모두다 */
+div > h4 {  
+    background-color: rgb(216, 255, 249);
+}
+
+/* 동위 선택자 */
+/*
+    h3+p 바로 뒤에 있는 한개의 p 선택자만 적용
+ */
+h3+p {
+    color: rgb(192, 25, 178);
+
+}
+/*
+    h3~p h3뒤 p태그의 동위관계 모두 적용
+ */
+h3~p {
+    color: rgb(192, 25, 178);
+
+}
+
+/* 버튼 선택자 */
+.button:hover { /* 마우스가 버튼 위로 올라갔을 때 */
+    background-color: lightpink;
+}
+.button:active { /* 버튼을 클릭했을 때 */
+    background-color: rgb(206, 14, 42);
+}
+
+
+/* 상태 선택자 */
+input:focus {
+    border : 15px solid rgb(221, 159, 159);
+}
+input:enabled{
+    color: blueviolet;
+}
+input:disabled{
+    color: blue;
+}
+
+
+

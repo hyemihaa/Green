@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 애니메이션은 웹 요소들을 부드럽게 움직이거나 변화시키는 기능을 수행함  -->
+    <title>애니메이션</title>
+    <style>
+        .box-size {
+            width: 100px;
+            height: 100px;
+            margin: 100px 100px;
+        }
+        .box {
+            background-color: aquamarine;
+            animation-name: grow; /* 적용할 애니메이션 이름 */
+            animation-duration: 6s; /* 애니메이션이 완료(0% -> 100%) 까지 걸리는 시간 */
+            animation-timing-function: ease-in-out;
+        }
+
+        /*애니메이션 상태 @keyframes 정의 - 애니메이션 이름 : grow*/
+        /* 0% -> 100% : 상태에 따라 색상, 크기.. 변화 */
+        @keyframes grow {
+            0% {
+                transform: scale(1);
+                background-color:aquamarine
+            }
+            25% {
+                background-color: blue;
+            }
+            50% {
+                transform: scale(1.5);
+                background-color:lightskyblue;
+            }
+            100% {
+                transform: scale(1);
+                background-color: lightblue;
+            }
+        }
+
+        .box-2 {
+            background-color: deeppink;
+            animation-name: key-2;
+            animation-duration: 5s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: 1; /*infinite : 무한반복, number : 반복횟수설정*/
+            animation-fill-mode: both; /* 마지막 상태 유지 */
+            animation-play-state: running; /*애니메이션 재생상태 결정*/
+        }
+        /* .box-2:hover {
+            animation-play-state: paused; 마우스 올리면 정지
+        } */
+        .box-2:active {
+            animation-play-state: paused; /*마우스 클릭 : 정지*/
+        }
+        @keyframes key-2 {
+            0% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateX(200px);
+                opacity: 0.2; /* 투명도 */
+            }
+            100% {
+                transform: translateX(100px);
+                opacity: 1;
+            }
+        }
+
+        .box-3 {
+            background-color: green;
+            animation-name: key-3;
+            animation-duration: 5s;
+            animation-timing-function: ease-in-out;
+        }
+        @keyframes key-3 {
+            0% {
+                transform: rotate(45deg);
+                background-color: lightgreen;
+            }
+            30% {
+                transform: scale(1.2);
+                background-color: darkgreen;
+            }
+            50% {
+                transform: scale(1.5);
+                background-color:darkolivegreen
+            }
+            100% {
+                transform: scale(2);
+                background-color: teal;
+            }
+        }
+
+        .box-4 {
+            background-color: purple;
+            animation-name: key-4;
+            animation-duration: 10s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+        .box-4:hover {
+            animation-play-state: paused;
+        }
+        @keyframes key-4{
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="box-size box"></div>
+<hr>
+    <div class="box-size box-2"></div>
+<hr>
+    <div class="box-size box-3"></div>
+<hr>
+    <div class="box-size box-4"></div>
+<hr>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

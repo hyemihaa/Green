@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애니메이션 - 2</title>
+    <style>  
+        body {
+            margin: 0px;            
+            background-color: lavender;
+            display: flex;
+            justify-content: center;
+        }   
+
+        .dog {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0px;
+            animation: dog-key 4s linear infinite;
+        }
+
+        @keyframes dog-key {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-500px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="./organize/다운로드.jpg" alt="" class="dog">
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .container {
+            width: 100%;
+            height: 500px;
+            
+            /* flexbox를 적용할 컨테이너 지정 - 준비단계 */
+            display: flex;  /* 개발자 박스에서 설정 가능 */
+            /* flex-direction : flexbox가 적용된 컨테이너의 주축을 어떻게 사용할건지에 대한 속성 */
+            /* 속성 : column - 주축 세로 ( 위 -> 아래 )*/
+            /* 속성 : row - 주축 가로 ( 왼쪽 -> 오른쪽 )*/
+            flex-direction: row; 
+            
+            /* justify-content : 주축을 기준으로 요소들을 어떻게 정렬할지 지정하는 속성(가로) */
+            /* 속성 : center - 중앙정렬*/
+            /* 속성 : space-between - 요소 사이에 균등한 간격을 만들어 정렬 */
+            /* 속성 : space-around - 요소 주위 균등한 간격을 만들어 정렬 단, 첫번째와 마지막 요소의 간격은 요소사이의 절반만큼 유지 */ 
+            /* 속성 : space-evenly - 요소 주위 균등한 간격을 만들어 정렬 단, 첫번째와 마지막 요소의 간격은 요소사이 만큼의 간격 유지*/
+            justify-content: space-evenly;  
+            
+            /* align-items : 주축을 기준으로 요소들을 어떻게 정렬할지 지정하는 속성(세로) */
+            /* align-items: center; */
+        }
+        .item-1 {
+            flex-shrink: 2;
+        }
+
+        .item-2 {  
+        /*  flex-basis: 50px; flex-basic 지정한 아이템의 크기를 지정 
+            font-size: 50px; */
+        /*  flex-shrink : 부모 컨테이너의 크기에 따라 아이템들을 상대적으로 줄여줌 
+            flex-shrink: 5; */ 
+            flex-grow: 1; 
+        }
+
+        /* container클래스의 자식 div */
+        .container > div {
+            width: 200px;
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item-1">item-1</div>
+        <div class="item-2">item-2</div>
+        <div class="item-3">item-3</div>
+    </div>
+</body>
+</html>
