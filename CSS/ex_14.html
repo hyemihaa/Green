@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0px;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0px;  /*위아래 : 20px , 좌우 : 0px */
+        }
+
+        /* 네비게이션 스타일링 */
+        nav {
+            background-color: #666;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            /* justify-content : 주축을 기준으로 요소들을 어떻게 정렬할지 지정하는 속성(가로) */
+            /* 속성 : center - 중앙정렬  --> 보통 태그 정렬할때 사용*/
+        }
+        nav ul {
+            padding: 0px;
+            margin: 0px;
+        }
+        /* Home ~ Contact 설정*/
+        nav ul li {
+            display: inline-block;  /* 인라인 형식으로 변경 -> 일렬로 정렬됨*/
+            margin: 0px 15px; /*위아래 : 0px , 좌우 : 15px*/
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* 메인 스타일링 */
+        main {
+            display: flex;
+            justify-content: center;
+            height: 70vh; /* 웹 브라우저의 높잇값을 기준으로 영역의 크기가 정해집니다 */
+            /*height 700px*/
+            align-items: center;
+            text-align: center; 
+        }
+
+        /* 푸터 스타일링 */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center; /* 글자정렬 */
+            padding: 20px 0px;
+        }
+        /* 메인 스타일링 */
+        section {
+            width: 50vh;
+            text-align: left;
+            animation: fadeIn 1s linear 1;
+        }
+        .content {
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+        .sidebar {
+            width: 50%;
+            padding: 10px;
+            background-color: #ddd;
+        }
+        /* (animation) 
+        1. 페이드 인 효과 
+        -> 현재 위치보다 왼쪽에서 오른쪽으로 요소가 움직여야 함
+        -> 투명도 0에서부터 1로 완료가 되어야 함 */
+        @keyframes fadeIn {
+            0% {
+                transform: translateX(-100px); 
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        /* (media)
+        2. 764px 미만이면 p태그의 글씨를 파란색으로 변경, content바는 움직이지 않도로 설정*/
+        @media(max-width: 764px) {
+            .content {
+                animation: none;
+            }
+            .text {
+                color: blue;
+            }
+        }
+    
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Services</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <div class="container">
+                <div class="content">
+                    <h2>Welcome to My Website</h2>
+                    <p class="text">This is the main content area.</p>
+                </div>
+                <div class="sidebar">
+                    <h3>Sidebar</h3>
+                    <p class="text">This is the sidebar content area.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Example Site. All rights reserved.</p>
+    </footer>
+</body>
+</html>
