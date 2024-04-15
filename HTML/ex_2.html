@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>        
+        <thead> <!-- <thead> : 테이블의 가장 윗부분 -->          
+            <tr> <!-- <tr> : 행 -->
+                <th>이름</th> <!-- <th> : 제목표시 용도로 사용, 중앙정렬 굵은글씨 -->
+                <th>나이</th>
+                <th>성별</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>뭉구</td> <!-- <td> : 열 -->
+                <td>8살</td>
+                <td>남아</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table border="1" border-color = "tomato">
+        <thead>
+            <tr border="1" border-color = "aqua">
+                <th>이름</th>
+                <th>나이</th>
+                <th>성별</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr border="1" border-color = "aqua">
+                <td rowspan="2">봄이</td>
+                <td>5살</td>
+                <td>여아</td>
+            </tr>
+            <tr border="1" border-color = "aqua">               
+                <td colspan="2">공백</td>  <!-- colspan(속성) : 열병합 -->           
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
