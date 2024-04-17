@@ -1,6 +1,6 @@
-/* 스타일 코드 폴더 */
- /*  * : 전체 선택자
+/* 스타일 코드 파일 */
 
+/*  * : 전체 선택자
 * {
     color: blueviolet;
     font-size: 30px;
@@ -12,67 +12,76 @@ span {
     color: cadetblue;
     font-size: 5px;
 }
-/* 속성 선택자 : [] */
+
+/* 속성 선택자 : [] -> class="p-tag-text" : 선택자의 특정 속성에 대해 적용 */
 p[class="p-tag-text"] {
     color: blue;
     font-size: 20px;
 }
+
 /* id 선택자 : #아이디 */
 #p-tag-id {
     color: brown;
 }
+
 /* 클래스 선택자 : .클래스 */
 .p-tag-class {
     color: darksalmon;
 }
-/* 그룹 선택자 : 각각의 선택자를 같이 쓰는거(,으로 구분) */
-#p-tag-id, .p-tag-class {
+
+/* 그룹 선택자 : 각각의 선택자를 같이 사용 (,으로 구분) */
+#p-tag-id,
+.p-tag-class {
     color: rgb(165, 42, 114);
 }
-/* 자식 선택자 : <div>태그 바로 아래 */
-div h4 {    
+
+/* 자식 선택자 : 특정 요소의 바로 아래에 있는 요소만 -> <div>태그 바로 아래 */
+div h4 {
     background-color: rgb(235, 255, 179);
 }
- /* 후손 선택자 : <div>태그 아래 모두다 */
-div > h4 {  
+
+/* 후손 선택자 : 특정 요소의 하위 요소 -> <div>태그 아래 모두다 */
+div>h4 {
     background-color: rgb(216, 255, 249);
 }
 
-/* 동위 선택자 */
-/*
-    h3+p 바로 뒤에 있는 한개의 p 선택자만 적용
- */
+/* 동위 선택자 : 같은 부모를 가진 관계(동위관계)에서 뒤에 위치한 태그 선택 
+                ->  h3+p 바로 뒤에 있는 한개의 p 선택자만 적용 */
 h3+p {
     color: rgb(192, 25, 178);
 
 }
-/*
-    h3~p h3뒤 p태그의 동위관계 모두 적용
- */
+
+/* 동위 선택자 : h3~p h3뒤 p태그의 동위관계 모두 적용 */
 h3~p {
     color: rgb(192, 25, 178);
 
 }
 
-/* 버튼 선택자 */
-.button:hover { /* 마우스가 버튼 위로 올라갔을 때 */
+/* 반응 선택자 : 사용자의 움직임에 따라 스타일을 적용하는 선택자 */
+.button:hover {
+    /* 선택자:hover -> 마우스가 버튼 위로 올라갔을 때 */
     background-color: lightpink;
 }
-.button:active { /* 버튼을 클릭했을 때 */
+
+.button:active {
+    /* 선택자:active -> 버튼을 클릭했을 때 */
     background-color: rgb(206, 14, 42);
 }
 
 
-/* 상태 선택자 */
+/* 상태 선택자 : <input>태그의 특정한 상태에 대해 스타일을 지정하는 선택자 */
 input:focus {
-    border : 15px solid rgb(221, 159, 159);
+    /* input:focus -> 포커스 상태의 input태그 선택 */
+    border: 15px solid rgb(221, 159, 159);
 }
-input:enabled{
+
+input:enabled {
+    /* input:enable -> 사용 가능한 상태의 input태그 선택 */
     color: blueviolet;
 }
-input:disabled{
+
+input:disabled {
+    /* input:disabled -> 사용 불가능한 상태의 input태그 선택 */
     color: blue;
 }
-
-
-

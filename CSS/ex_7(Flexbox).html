@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <!-- CSS용어 
+        * container : 요소들을 포함하고 있는 상위(부모) 요소 - 레이아웃을 구성하는 요소들을 그룹화 하는 역할(묶어주는 요소)
+            -> 일반적으로 div, section, article, main, ... 에 많이 사용 - 필수는 아니지만 보편적으로 사용 
+        * item : 레이아웃을 구성하는 요소 - 컨테이너 안에 포함된 요소들을 아이템이라고 부름 -->
+
+    <style>
+        /* Flexbox : float 방식보다 강력하고 기능이 많은 1차원 레이아웃 배치를 위한 속성 */
+        
+        .container {
+            width: 100%;
+            height: 500px;
+            
+            /* flexbox를 적용할 컨테이너 지정 - 준비단계 */
+            display: flex; 
+
+            flex-direction: row; 
+            /* flex-direction : flexbox가 적용된 컨테이너의 주축을 어떻게 사용할건지에 대한 속성 
+                            -> 속성 : column - 주축 세로 ( 위 -> 아래 )
+                            -> 속성 : row - 주축 가로 ( 왼쪽 -> 오른쪽 ) */
+            
+            justify-content: space-evenly;  
+            /* justify-content : 주축을 기준으로 요소들을 어떻게 정렬할지 지정하는 속성(가로) 
+                            -> 속성 : center - 중앙정렬
+                            -> 속성 : flex-start - 기본값, 왼쪽정렬
+                            -> 속성 : flex-end - 오른쪽정렬
+                            -> 속성 : space-between - 요소 사이에 균등한 간격을 만들어 정렬 
+                            -> 속성 : space-around - 요소 주위 균등한 간격을 만들어 정렬 단, 첫번째와 마지막 요소의 간격은 요소사이의 절반만큼 유지 
+                            -> 속성 : space-evenly - 요소 주위 균등한 간격을 만들어 정렬 단, 첫번째와 마지막 요소의 간격은 요소사이 만큼의 간격 유지 */
+            
+            /* align-items : 주축을 기준으로 요소들을 어떻게 정렬할지 지정하는 속성(세로) 
+                            -> 속성 : center - 세로기준 중앙정렬 
+                            -> 속성 : stretch - 기본값, 요소들을 채우기 위해 늘림  */
+        }
+
+        /* flex-grow, shrink basis : 아이템의 크기를 결정 
+                -> flex-grow : 부모 컨테이너의 남는 공간을 상대적으로 차지하게 해줌
+                -> flex-shrink : 부모 컨테이너의 크기에 따라 아이템들을 상대적으로 줄여줌 
+                -> flex-basic 지정한 아이템의 크기를 지정 */
+        .item-1 {
+            flex-shrink: 2;
+        }
+
+        .item-2 {  
+            flex-grow: 1; 
+        }
+        .item-3 {
+            flex-basis:5px;  
+        }  
+
+        /* container클래스의 자식 div */
+        .container > div {
+            width: 200px;
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item-1">item-1</div>
+        <div class="item-2">item-2</div>
+        <div class="item-3">item-3</div>
+    </div>
+</body>
+</html>

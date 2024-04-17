@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>레이아웃2</title>
+
     <style>
+        /* float속성 : 각각의 요소들의 배치를 변경하여 다른 요소들과 어떻게 상호작용할 지 컨트롤 할 수 있는 속성(다음 요소 위에 떠있게 함) 
+                    -> inherit : 부모 요소의 float속성 상속
+                    -> left : 요소를 왼쪽으로 띄움 
+                    -> right : 요소를 오른쪽으로 띄움
+                    -> none : 기본값, 요소를 띄우지 않음*/
         p {
-            float: left;
+            float: left; /* 요소를 (화면의)왼쪽으로 */
             width: 300px;
-            height: 250px;
-            background-color: darkorchid;
+            height: 400px;
+            background-color: lightgoldenrodyellow;
         }
         img { 
-            float:inherit;
+            float:right; /* 부모<p>의 float요소 상속 -> 이미지를 부모요소안 오른쪽으로 띄움*/
             width: 200px;
             height: 150px;
             background-color: lightblue;
@@ -21,7 +27,7 @@
 </head>
 <body>
     <h1> float 속성 </h1>
-    <p> <!-- . 현재위치 / 하위폴더 .. 상위위치 -->
+    <p> <!-- <p>안에 img -->
         <img src="./organize/다운로드.jpg" alt="시바"> <!-- img : 인라인레벨 -->
         모든 국민은 법률이 정하는 바에 의하여 납세의 의무를 진다. 
         정기회의 회기는 100일을, 임시회의 회기는 30일을 초과할 수 없다. 

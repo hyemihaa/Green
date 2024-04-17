@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>트랜지션</title>
-    <!-- CSS의 프로퍼티 값의 변화가 일정 시간에 걸쳐 일어나도록 해주는 기능 -->
+    <!-- 트랜지션(transition) : CSS의 프로퍼티 값의 변화가 일정 시간에 걸쳐 일어나도록 해주는 기능 -->
     <style>
         div:not(.items) { /* not() 연산자 : <div>태그 - .items 포함하지X */
             width: 150px;
@@ -15,11 +15,12 @@
             /* transition-delay: 2s; 트랜지션 시작되기까지 시간(마우스올리고 2초후 시작) */
             /* transition-timing-function:ease; 트랜지션이 어떤 속도, 패턴으로 실행될지를 설정  */
         }
-      /*  div:hover {
+        /*  div:hover {
             width: 500px;
             background-color: lightsalmon;
         } */
 
+        /* transform : 요소에 이동(translate), 회전(rotate), 확대축소(scale), 비틀기(skew) 효과를 부여 */
         #trans-late:hover { /* x축 : 50px, y축 : 50px */
             transform: translate(50px, 50px);
         }
@@ -28,15 +29,15 @@
         }
         #trans-y:active {
             /* transform: translateY(30px); */
-            transform: perspective(300px) translateZ(30px);
+            transform: perspective(300px) translateZ(30px); /* 이동(translate) */
         }
 
         #scale:active {
-            transform: scaleY(2); /* scale : 지정한 크기 만큼 요소를 확대하거나 축소시킴*/
+            transform: scaleY(2); /* 확대축소(scale) */
         }
         #skew:active {
-            transform: skew(30deg,30deg); /*skew : 해당하는 요소 비틀어서 왜곡*/
-            transform: rotate(180deg);
+            transform: skew(30deg,30deg); /* 비틀기(skew) */
+            transform: rotate(180deg); /* 회전(rotate) */
         }
 
         .items:hover div{
@@ -59,7 +60,8 @@
         #item-5 {
             /* transition-property: all;
             transition-duration: 5s;
-            transition-timing-function: ease-in-out; ---> 3줄을 아래의 한줄로 사용할 수 있다*/
+            transition-timing-function: ease-in-out; 
+            ---> 3줄을 아래의 한줄로 사용할 수 있다*/
             transition: all 5s ease-in-out;
             
         }  

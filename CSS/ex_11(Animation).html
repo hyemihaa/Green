@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 애니메이션은 웹 요소들을 부드럽게 움직이거나 변화시키는 기능을 수행함  -->
+    <!-- 애니메이션은 웹 요소들을 부드럽게 움직이거나 변화시키는 기능을 수행함
+        하나의 줄거리(@keyframes)를 구성하여 줄거리 내에서 세부 움직임을 시간 흐름 단위로 제어하여 요소의 움직임을 표현  -->
     <title>애니메이션</title>
     <style>
         .box-size {
@@ -15,12 +16,13 @@
             background-color: aquamarine;
             animation-name: grow; /* 적용할 애니메이션 이름 */
             animation-duration: 6s; /* 애니메이션이 완료(0% -> 100%) 까지 걸리는 시간 */
-            animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out; /* 변화 속도 */
         }
 
-        /*애니메이션 상태 @keyframes 정의 - 애니메이션 이름 : grow*/
-        /* 0% -> 100% : 상태에 따라 색상, 크기.. 변화 */
+        /*애니메이션 상태 @keyframes 정의 
+        - 애니메이션 이름 : grow */
         @keyframes grow {
+            /* 0% -> 100% : 상태에 따라 색상, 크기.. 변화 */
             0% {
                 transform: scale(1);
                 background-color:aquamarine
@@ -45,7 +47,7 @@
             animation-timing-function: ease-in-out;
             animation-iteration-count: 1; /*infinite : 무한반복, number : 반복횟수설정*/
             animation-fill-mode: both; /* 마지막 상태 유지 */
-            animation-play-state: running; /*애니메이션 재생상태 결정*/
+            animation-play-state: running; /* 애니메이션 재생상태 결정 */
         }
         /* .box-2:hover {
             animation-play-state: paused; 마우스 올리면 정지
@@ -53,6 +55,13 @@
         .box-2:active {
             animation-play-state: paused; /*마우스 클릭 : 정지*/
         }
+
+        /* 페이드 인 / 아웃 효과 
+        1. 페이드 인 효과 
+        -> 투명도 0에서부터 1로 완료가 되어야 함 
+        2. 페이드 아웃 효과
+        -> 투명도 1에서부터 0으로 완료가 되어야 함 */
+        
         @keyframes key-2 {
             0% {
                 transform: translateX(0);

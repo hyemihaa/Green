@@ -11,24 +11,25 @@
             background-color: antiquewhite;
             position:absolute
         }
-        /* z-index : 각각의 요소들이 겹쳐있을때 요소들의 위아래를 결정하는 속성(필요한 상황에서만 사용 권장) */
+        /* z-index : 각각의 요소들이 겹쳐있을때 요소들의 위아래를 결정하는 속성(필요한 상황에서만 사용 권장)
+                    -> 값이 낮을수록 아래로 값이 높을수록 위로  */
         .box1 {
             top: 50px;
             left: 50px;
             background-color: blueviolet;
-            z-index: 2;
+            z-index: 2; /* 첫번째 */
         }
         .box2 {
             top: 100px;
             left: 100px;
             background-color:chartreuse;
-            z-index: 1;
+            z-index: 1; /* 두번째 */
         }
         .box3 {
             top: 150px;
             left: 150px;
             background-color:deeppink;
-            z-index: 0;
+            z-index: 0; /* 세번째 */
         }
         </style>
 </head>

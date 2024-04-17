@@ -80,9 +80,10 @@ footer {
     color: white;
 }
 /*게시판 table*/
-button {
-    margin-top: 5px;
-    padding-left: px;
+board-but {
+    margin: 0px;
+    width: 50px;
+
     
 }
 table {
