@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>테이블요소</title>
 </head>
 <body>
+    <!-- <table> : 테이블(표) 형식-->          
     <table>        
-        <thead> <!-- <thead> : 테이블의 가장 윗부분 -->          
+        <!-- <thead> : 테이블의 가장 윗부분 -->          
+        <thead> 
             <tr> <!-- <tr> : 행 -->
-                <th>이름</th> <!-- <th> : 제목표시 용도로 사용, 중앙정렬 굵은글씨 -->
+                <th>이름</th> <!-- <th> : 행 -> 제목표시 용도로 사용, 중앙정렬 굵은글씨 -->
                 <th>나이</th>
                 <th>성별</th>
             </tr>
         </thead>
-
+        <!-- <tbody> : 테이블의 본문 내용 -->
         <tbody>
             <tr>
                 <td>뭉구</td> <!-- <td> : 열 -->
@@ -24,7 +26,7 @@
         </tbody>
     </table>
 
-    <table border="1" border-color = "tomato">
+    <table border="1" border-color = "tomato">  <!-- 인라인 스타일 -->
         <thead>
             <tr border="1" border-color = "aqua">
                 <th>이름</th>
@@ -35,14 +37,15 @@
 
         <tbody>
             <tr border="1" border-color = "aqua">
-                <td rowspan="2">봄이</td>
+                <td rowspan="2">봄이</td> <!-- rowspan속성 : 행병합 -->
                 <td>5살</td>
                 <td>여아</td>
             </tr>
             <tr border="1" border-color = "aqua">               
-                <td colspan="2">공백</td>  <!-- colspan(속성) : 열병합 -->           
+                <td colspan="2">공백</td>  <!-- colspan속성 : 열병합 -->           
             </tr>
         </tbody>
     </table>
+    
 </body>
 </html>
