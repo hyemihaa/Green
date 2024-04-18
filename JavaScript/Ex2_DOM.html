@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- DOM : Document Object Model -->
+</head>
+<body>
+    <div class="box-class">Box1</div>
+    <div class="box-class">Box2</div>
+    <div class="box-class" name="box-name">Box3</div>
+    <div id="box-4" name="box-name">Box4</div>
+
+    <input type="hidden" id="hidden-value" value="asdf">
+
+    <br><br>
+
+    <input type="text" id="second-number" placeholder="숫자입력">
+    <input type="text" id="input-number" value="10" placeholder="숫자입력">
+    <button onclick="add()">덧셈</button> <!-- 버튼 클릭시 add() 호출 -->
+    <div id="result-msg">0</div> <!-- div태그에 값 넣기 -->
+
+    <!-- <button onclick="checkNumber()">전송</button> -->
+
+    <!-- input -->
+    <script>
+        function add() {
+                            // parseInt() : 정수로 형변환
+            const firstNumber = parseInt(document.getElementById("input-number").value); // 사용자입력값
+            const secondNumber = parseInt(document.getElementById("second-number").value); // 사용자입력값
+            const resultMsg = document.getElementById("result-msg");
+                    
+                    //typeof() : 데이터타입 확인
+            console.log(typeof(firstNumber));
+
+            if(firstNumber + secondNumber >= 50) {
+                resultMsg.style.color = "green"; // 스타일 적용
+                resultMsg.innerHTML = "50보다 크거나 같습니다.";
+            }
+            else {
+                resultMsg.style.color = "red";
+                resultMsg.innerHTML = "50보다 작습니다.";
+            }
+
+            // resultMsg.innerHTML = firstNumber + secondNumber;
+            
+
+        }
+
+
+        // function checkNumber() {
+        //     const inputNumber = document.getElementById("input-number");
+        //     console.log(inputNumber.value); // 사용자가 입력한 값(value)
+        // }
+        function checkNumber() { // 위 코드를 이처럼 사용 가능
+            const inputNumber = document.getElementById("input-number").value; 
+            const hiddenValue = document.getElementById("hidden-value").value; 
+            console.log(inputNumber); //초기값 : 10 or 사용자가 입력한 값
+            console.log(hiddenValue);  // 초기값 :asdf
+        }
+    </script>
+
+
+
+
+    <!-- div태그 -->
+    <script>
+        // id로 HTML요소 가져오기 (1개의 요소만 = id는 유일한 값(..여러값 가능하지만 쓰지X)) id를 많이 사용함
+        const getBoxId = document.getElementById("box-4"); 
+        console.log(getBoxId);
+        
+        
+        // tag로 HTML요소 가져오기 (여러개의 요소 한번에 -> 배열형태(인덱스))
+        const getBoxTag = document.getElementsByTagName("div");
+        console.log(getBoxTag);
+
+        for(let i = 0; i < getBoxTag.length; i++) { // for문으로 요소를 꺼낸다
+            console.log(getBoxTag[i]);
+        }
+
+        // class로 HTML요소 가져오기
+        const getBoxClass = document.getElementsByClassName("box-class");
+        console.log(getBoxClass);
+        
+        // class로 HTML요소 가져오기
+        const getBoxName = document.getElementsByName("box-name");
+        console.log(getBoxName)
+
+        // HTMLCollection  VS  NodeList
+        // 1. HTMLCollection : 값이 변경되면 업데이트O (동적 컨텐츠)
+        // 2. NodeList : 값이 변경되도 업데이트X (정적 컨텐츠)
+
+        // --------------------------------------------------------------------------
+        
+        // querySelector - 가장 상위 요소 한개만 
+        const selectorClass = document.querySelector(".box-class"); // #box-4, div : CSS선택자
+        console.log("class형식 : " + selectorClass);
+        
+        // querySelectorAll
+        const querySelectorAllClass = document.querySelectorAll(".box-class");
+        console.log(querySelectorAllClass);
+
+
+        // ------------------------------------ 데이터 출력 ------------------------------------
+        // 위 getBoxId 사용
+        // 1. console.log
+        console.log(getBoxId);
+        console.log("텍스트도 가능");
+        
+        // textContent, outer를 활용해서 문자 이어붙이기 가능 (거의 사용 X)
+        console.log(getBoxId + " 문자를 이어붙이면"); // -> [object HTMLDivElement] 문자를 이어붙이면
+        console.log(getBoxId.textContent + "textContent 사용")
+        console.log(getBoxId.outerHTML + "outer 사용")
+        console.log(getBoxId.outerText + "outer 사용")
+        
+        // 2. write (거의 사용 X)
+        document.write(getBoxId); // 화면에 출력
+        
+        // 3. alert
+        //alert(getBoxId); // 팝업창
+        
+        // 4. innerHTML
+        getBoxId.innerHTML = "내용변경"; // getBoxId 요소의 내용 변경
+        
+        // ------------------------------------ 데이터 입력 ------------------------------------
+        // 1. confirm("질문 내용") - 확인(true) / 취소(false) 
+        //const question = confirm("진행하시겠습니까?");
+        //console.log(question);
+
+        // 2. prompt("질문 내용") - 사용자에게 어떠한 텍스트를 전달받고 싶을 때 사용
+        //const questionText = prompt("당신의 이름은 무엇입니다?")
+        //console.log(questionText);
+        </script>
+</body>
+</html>
