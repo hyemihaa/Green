@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- external 방식 -->
+    <script src="./Ex1_var.js"></script>
+</head>
+<body>
+    <!-- 인라인 방식 -->
+    <button onclick="alert('Hello, World!')">클릭</button>
+
+    <button onclick="btnClick()">internal</button>
+
+    <button onclick="externalClick()">external</button>
+    <br><br>
+
+    <!-- 변수 -->
+    <script>
+        // 차이점 1
+        // var : 중복선언 가능
+        // let. const : 중복 불가능 
+        var a = "var 변수";
+        let b = "let 변수";
+        const c = "const 변수";
+
+        console.log(a);
+        console.log(b);
+        console.log(c);
+
+        var a = "var 중복 선언 가능";
+
+        console.log(a); 
+
+        // let b = "let 중복 불가능" -> 에러
+        // const c = "const 중복 불가능" -> 에러
+
+
+        // 차이점 2 : 스코프 - 변수에 접근할 수 있는 범위
+        // 전역스코프 : 전체범위, 코드 어디에서든 참조가 가능
+        // 지역스코프 - 블록스코프 : 블록{}이 생성될때 새로운 스코프가 생성
+        //           - 함수스코프 : 새로운 함수가 생성될때마다 새로운 스코프 발생
+
+        // var : 함수스코프
+        // let. const : 블록스코프
+
+        // example() 함수 
+        function example() {
+            var a2 = 10; // 함수 스코프 -> a2의 값 = 100으로 변함
+            let b2 = 20; // 블록 스코프 
+            const c2 = 30; // 블록 스코프
+
+            if(true) {
+                var a2 = 100;
+                let b2 = 200;
+                const c2 = 300;
+
+                console.log("if문 : ", a2, b2, c2); // 100 200 300
+            }
+
+            console.log("if문 밖 : ", a2, b2, c2); // 100 20 30
+        }
+        
+        example(); // 함수 호출
+
+
+        // 차이점 3 : 호이스팅 여부
+        // 자바스크립트는 코드 실행전 코드를 전체적으로 훑어보는 환경레코드가 있다.(실행컨텍스트)
+        // var 생성단계(변수 선언) -> 실행단계(변수 초기화) 무조건 진행함
+        // let, const - 생성단계(변수선언)만 진행 -> 실행단계(변수 초기화)를 하지 않음 -> 에러발생
+
+        // 상단에 var a3 = undefined;코드가 생성 되어있다고 생각 
+        // *자바스크립트의 기본값 undefined으로 초기화 진행 -> 에러X
+        console.log(a3); // console창 : undefined
+        var a3 = "var 변수";
+        console.log(a3);  // console창 : var변수
+
+        // Uncaught ReferenceError: Cannot access 'b3' before initialization
+        // -> 초기화 전에 'b3'에 엑세스 할수 없습니다.
+//      console.log(b3); // ReferenceError(에러)
+        let b3 = "let 변수";
+        console.log(b3); 
+
+
+        // 차이점 4 : const는 상수 - 값을 한번 넣으면 변경 불가
+        const c3 = "const 변수";
+        console.log(c3);
+
+//      c3 = "값 변경"; // 상수는 변경할 수 없는 값 -> 에러발생
+        console.log(c3);
+
+    </script>
+</body>
+</html>
+    <!-- internal 방식 -->
+    <!-- internal 방식은 body태그 또는 html태그가 끝나는 곳에 작성하는 것이 좋음 -->
+    <script>
+                // 함수(메서드)
+        function btnClick() {
+            alert('internal 방식입니다.')
+        }
+    </script>
