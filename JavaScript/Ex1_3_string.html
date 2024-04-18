@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let helloWorld = "hello, World";
+
+        // < string 관련 함수 >
+        // 1. toUpperCase() : 대문자로 변환
+        console.log("toUpperCase() : " + helloWorld.toUpperCase());
+
+        // 2. toLowerCase() : 소문자로 변환
+        console.log("toLowerCase() : " + helloWorld.toLowerCase());
+
+        // 3. length : 문자열의 길이
+
+        // 4. charAt(index) : 해당하는 index에 있는 데이터 추출
+        console.log("charAt(index) : " + helloWorld.charAt(3));
+        
+        for(let i = 0; i < helloWorld.length; i++) {
+            console.log(i + "번째 인덱스 : " + helloWorld.charAt(i));          
+        }
+
+        // 5. indexOf("문자"); : 앞에서부터 첫 문자를 만나는 인덱스 번호
+        // 6. lastIndexOf("문자"); : 뒤에서부터 
+        console.log("indexOf('문자') : " + helloWorld.indexOf("dl")); // 해당하는 문자가 없을 경우 -1반환
+        console.log("indexOf('문자') : " + helloWorld.indexOf("l"));
+
+        // 7. substring() : 문자열 자르기
+        console.log("substirng : " + helloWorld.substring(0, 5)); //0번 인덱스부터 5번전까지 추출
+        console.log("substirng : " + helloWorld.substring(5)); // 5번 인덱스이후부터 추출
+
+        // < 수학 관련 내장 함수 - Math.함수명>
+        console.log("절대값 : " + Math.abs(-55));
+
+        console.log("랜덤값 : " + Math.random()); // 범위 0.0 ~ 1.0
+
+        console.log("반올림 : " + Math.round(123.88)); // console : 124
+        
+        console.log("올림 : " + Math.ceil(123.11)); // 124
+        
+        console.log("버림 : " + Math.floor(123.999)); // 123
+        
+        console.log("제곱근 : " + Math.sqrt(8));
+        
+    </script>
+</body>
+</html>
