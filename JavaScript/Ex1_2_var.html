@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>srting : 문자열</li>
+        <li>number : 숫자</li>
+        <li>boolean : 논리(true / false)</li>
+        <li>object : 객체</li>
+        <li>function : 함수</li>
+        <li>undifined : 정의되지 않음</li>
+    </ul>
+
+    <button onclick="checkType()">자료형 출력</button>
+    <div id="type-text"></div>
+
+    <script>
+        let name = "하혜미"
+        let age = 20;
+        let flag = true; 
+
+        console.log(typeof(name)); // string
+        console.log(typeof(age)); // number
+        console.log(typeof(flag)); // boolean
+
+        // object (java의 배열과 비슷)
+        let hobby = ["잠자기", "먹기", "자기"]; 
+        // object (java의 맵과 비슷)
+        let memberInfo = { 
+            name : "김뭉봄",
+            age : 10,
+            flag : false
+        };
+        
+        console.log(typeof(hobby));
+        console.log(typeof(memberInfo));
+
+        console.log(hobby[1]);
+        console.log(memberInfo.name);
+
+        function checkType() {
+            const typeText = document.getElementById("type-text");
+            typeText.innerHTML = name + "의 자료형 : " + typeof(name) + "<br>";
+
+            typeText.innerHTML = memberInfo.name + "의 자료형 : " + typeof(memberInfo.name) + "<br>";
+
+            typeText.innerHTML += age + "의 자료형 : " + typeof(age) + "<br>";
+        }
+    </script>
+</body>
+</html>
