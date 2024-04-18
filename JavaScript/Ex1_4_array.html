@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="arrayTest()">배열사용</button>
+    <div id="test-text"></div>
+
+    <script>
+        function arrayTest() {
+            //        string , string, number, boolean, objcet
+            let arr = ["Hello", 'World', 999, true, [10, 20, 30]];
+    
+            const testText = document.getElementById("test-text");
+            
+            
+            // 1. arr의 값을 하나씩 꺼내야 함(for)
+            for(let i = 0; i < arr.length; i++) {
+                // 2. innerHTML을 사용해서 꺼낸 값들을 계속 추가
+                testText.innerHTML += arr[i] + "<br>";
+            }
+        }
+    </script>
+
+    <hr>
+
+        <button onclick="arrayTest2()">배열선언</button>
+        <div id="result"></div>
+    
+    <script>
+        function arrayTest2() {
+            const result = document.getElementById("result");
+
+            let arr1 = new Array(); // 선언
+            
+            console.log(arr1.length); // 길이 : 0
+            
+            arr1[0] = "뭉보미";
+            console.log(arr1.length); // 길이 : 1 (arr1[0] 인덱스에 값을 추가)
+            
+            let arr2 = new Array(3); // 선언
+            console.log(arr2.length); // 길이 : 3 (index = 0,1,2)
+            arr2[0] = "A";
+            arr2[1] = "B";
+            arr2[2] = "A";
+            arr2[3] = "A"; // 자동으로 길이가 4로 늘어나고 , 인덱스 4가 추가된다
+
+            console.log("indexOf : " + arr1.indexOf("B")); // 인덱스를 찾아줌 -> 1
+
+            // 배열은 빈배열로 사용
+            let arr3 = [];
+            console.log(arr3.length); 
+            arr3[0] = "B";
+            console.log(arr3.length); 
+            
+
+            let arr4 = new Array("ASD", "ASD");
+            console.log(arr4.length);
+        }
+    </script>
+
+    <hr>
+
+    <input type="text" id="input-menu" placeholder="점심 메뉴를 입력해주세요.">
+    <button onclick="selectMenu()">제출</button>
+    <div id="resultMenu"></div>
+
+    <script>
+        // 사용자가 입력한 메뉴의 인덱스를 출력
+        function selectMenu() {
+            let menuList = ["국밥", "짬뽕", "물회", "멸치국수", "초밥", "보쌈"];
+            menuList.push("라면"); //맨뒤에 값 추가 : 인덱스 6번째
+            menuList.push("족발"); //맨뒤에 값 추가 : 인덱스 6번째
+            menuList.pop(); // 맨뒤에 값 제거
+
+            // 1. 사용자가 입력한 값 가져오기
+            const inputMenu = document.getElementById("input-menu").value;
+            const result = document.getElementById("resultMenu");
+            // 2. 사용자가 입력한 메뉴가 menuList 배열의 몇 번 인덱스에 존재하는지 
+            //  indexOf("값")
+            const getIndex = menuList.indexOf(inputMenu); // 찾은메뉴 (인덱스 번호)
+            // 3. 찾은 인덱스를 resultMenu에 출력
+            // * 조건 : 찾은 메뉴가 없으면 "000 메뉴가 없습니다."
+            //                     있으면 "000 메뉴가 0번째에 있습니다."
+            if(getIndex === -1) {
+                result.innerHTML = inputMenu + " 메뉴가 없습니다.";
+            }
+            else {
+                result.innerHTML = inputMenu + " 메뉴가" + (getIndex +1) + "번째에 있습니다.";
+            }
+        } 
+    </script>
+
+    <hr>
+
+    <button onclick="randomMenuFunc()">랜덤메뉴</button>
+    <script>
+        function randomMenuFunc() {
+            let menuList = ["국밥", "짬뽕", "만두국", "멸치국수", "초밥", "돈까스"];
+                            // 소수점 버리는 함수(랜덤함수) * 10 => 1~10; 
+            const randomMenu = Math.ceil(Math.random() * 10);
+
+            if(randomMenu > 5) {
+                console.log("메뉴없음");
+            }
+            else {
+                console.log(menuList[randomMenu]);
+            }
+        }
+    </script>
+
+    <hr>
+    <h1>배열 관련 내장함수</h1>
+    <ul>
+        <li>배열.indexOf("값") : 해당하는 값이 있는 요소의 인덱스 반환, 없다면 -1</li>
+        <li>배열.concat(배열, 배열, ...) : 배열 합치기</li>  <!--arr.concat(배열1, 배열2)-->
+        <li>배열.reverse() : 배열의 값을 역순으로 재배치</li>
+        <li>배열.sort() : 오름차순 정렬</li>
+        <li>배열.push("값") : 배열의 맨 뒤에 요소 추가 -> 배열의 크기를 반환</li>
+        <li>배열.pop("값") : 배열의 맨 뒤 요소 제거 -> 제거된 요소 반환</li>
+        <li>배열.unshift("값") :배열의 맨 앞에 요소 추가 -> 배열의 크기를 반환</li>
+        <li>배열.shift("값") :배열의 맨 앞 요소 제거 -> 제거된 요소 반환</li>
+        <li>배열.slice(시작인덱스, 끝인덱스) : 해당하는 인덱스의 요소 추출</li>
+        <li>배열.join(구분자) : 구분자를 기준으로 요소를 합침</li>
+    </ul>
+
+    <hr>
+
+    <script>
+        let arrList = ["A", "B", "C", "D"];
+
+        console.log(arrList.indexOf("A")); //0
+        console.log(arrList.indexOf("AB")); //-1(없는값)
+
+        console.log(arrList.reverse()); // ["D", "C", "B", "A"] -> 변경된 값은 그대로 arrList에 적용
+ 
+        console.log(arrList.sort()); //["A", "B", "C", "D"]
+
+        console.log(arrList.push("E")); // 5 : 배열의 크기를 반환 (길이)
+        console.log(arrList.pop()); // E : 제거된 요소 반환(마지막 요소)
+       
+        console.log(arrList.slice(1, 3)); // ["B", "C"]
+
+        let temArr = ["1", "2", "3"]
+        console.log(temArr.join()); // 1,2,3 
+        console.log(temArr.join(" ")); // 1 2 3 
+        console.log(temArr.join("-")); // 1-2-3 
+    </script>
+</body>
+</html>
