@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="handlerTest1()">이벤트 핸들러-1</button>
+    <p id="result-1"></p>
+
+    <script>
+        function handlerTest1() {
+            const result = document.getElementById("result-1");
+            result.innerHTML = "핸들러1 실행";
+        }
+    </script>
+
+    <hr>
+
+    <button id="btn-2">이벤트 핸들러-2</button> <!-- 위 result-1과 같은 코드 -->
+    <p id="result-2"></p>
+
+    <script>
+        const btn2 = document.getElementById("btn-2")
+        const result2 = document.getElementById("result-2");
+
+        btn2.onclick = function () {
+            result2.innerHTML = "핸들러2 실행";
+        }
+    </script>
+
+    <hr>
+
+    <button id="btn-3">이벤트 리스너</button>
+    <p id="result-3"></p>
+
+    <script>
+        const btn3 = document.getElementById("btn-3")
+        const result3 = document.getElementById("result-3");
+
+
+        // btn3.addEventListener('click', function(){ // 'click'이벤트를 감지하고 이벤트가 발생했을때 함수를 실행하겠다.
+        //     result3.innerHTML = "이벤트 리스너 실행";
+        // });
+
+
+        btn3.addEventListener('click', listenerTest); // 함수로 따로 만들어서 실행 할 수있다.
+
+        function listenerTest() {
+            result3.innerHTML = "이벤트 리스너 실행";
+        }
+
+    </script>
+
+    <hr>
+    <!-- dblclick : 더블 클릭했을 때 -->
+    <!-- mouseover : 마우스 위로 올라갔을때 -->
+
+    <button id="btn-4">dblclick</button>
+    <p id="result-4"></p>
+
+    <script>
+        const btn4 = document.getElementById("btn-4");
+        const result4 = document.getElementById("result-4");
+
+        btn4.addEventListener('dblclick', function () {
+            result4.innerHTML = "이벤트 발생!";
+        })
+
+    </script>
+
+    <button id="btn-5">mouseover</button>
+    <p id="result-5"></p>
+
+    <script>
+        const btn5 = document.getElementById("btn-5");
+        const result5 = document.getElementById("result-5");
+
+        btn5.addEventListener('mouseover', function () {
+            result5.innerHTML = "이벤트 발생!";
+        })
+
+    </script>
+
+    <hr>
+
+    <div style="border: 1px solid black; width: 200px; height: 200px;" id="div-area"></div>
+
+    <script>
+        const divArea = document.getElementById("div-area");
+
+        divArea.addEventListener('contextmenu', function (event) {
+            // alert("우클릭발생!");
+            event.preventDefault();
+        });
+
+    </script>
+
+    <hr>
+
+    <input type="text" id="my-input" maxlength="10">
+    <button id="button-6">클릭</button>
+    <div id="result-6"></div>
+    <script>
+        const myInput = document.getElementById("my-input");
+        const result6 = document.getElementById("result-6");
+        const button6 = document.getElementById("button-6");
+        let keydownTime; // 전역변수
+
+        myInput.addEventListener('keydown', function () {
+            console.log(keydownTime); // 키보드를 누르면 undefined
+            if (!keydownTime) {
+                console.log(!keydownTime); // !(논리부정) : true 값 출력
+                keydownTime = new Date();
+                result6.innerHTML = "키를 누른 시간 : " + keydownTime;
+            }
+        })
+
+        myInput.addEventListener('keyup', function () {
+            const keyupTime = new Date();
+            const duration = keyupTime - keydownTime;
+
+            result6.innerHTML = "키 누르고 있던 시간 : " + duration + "ms"
+
+            keydownTime = null;
+
+        })
+
+        button6.addEventListener('click', function () {
+            alert("클릭 되었습니다!");
+        })
+
+        // myInput.addEventListener('keydown', function(event) {
+        //     result6.innerHTML = "키가 눌렸습니다." + event.keyCode;
+
+        //     if(event.keyCode === 13) { //enter : 키코드 번호 = 13
+        //         button6.click(); // button6. : 위의 함수 호출 click() : 클릭이벤트
+        //     }
+        // })
+
+    </script>
+
+    <hr>
+    <!-- this. : 자기자신(요소), this.vaule -> 자기자신의 값(입력값자체) -->
+    <input type="password" id="input-password" onkeyup="validatePassword(this.value)">
+    <div id="result-7"></div>
+
+    <script>
+        let isValid;
+        const result7 = document.getElementById("result-7");
+
+        function validatePassword(password) {
+            console.log(password);
+
+            // 소문자, 대문자, 숫자를 포함한 6자리 이상 12자리 이하
+            const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,12}$/;
+
+            //password : 값 pattern : 정규표현식에 맞는지 test해주는 내장함수 (.test)
+            isValid = pattern.test(password);
+            result7.innerHTML = "입력한 비밀번호가 유효한가요?" + isValid;
+
+            if (isValid) {
+                result7.innerHTML = "사용할 수 있는 비밀번호입니다";
+                result7.style.color = "green";
+            }
+            else {
+                result7.innerHTML = "사용할 수 없는 비밀번호입니다.";
+                result7.style.color = "red";
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>
