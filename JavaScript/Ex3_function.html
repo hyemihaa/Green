@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="argsTest('입력', true)">클릭</button>
+    <button onclick="argsTest2(1, 2, 3)">arguments 클릭</button>
+    <button onclick="argsTest3(1, 2, 3, 4, '안녕', true)">가변인자 클릭</button>
+    <div id="argsResult"></div>
+    <script>
+        // 1. *일반 함수
+
+        // 가변인자(...변수명) : 여러개의 매개변수를 배열로 받아서 저장 
+        // -->  가변인자를 다른 변수와 사용할 때 (변수, ...변수명) : 이런식으로 가변인자는 마지막에 사용해야 한다.
+        function argsTest3(...args) {
+            const result = document.getElementById("argsResult");
+
+            console.log("가변인자 : " + args);
+
+            for (let i = 0; i < args.length; i++) {
+                result.innerHTML += args[i];
+            }
+
+        }
+
+        // arguments : 함수마다 내부적으로 존재하는 배열 객체(따로 생성하지 않아도 사용할 수 있다)
+        // -> 인자값의 개수와 상관 없이 배열에 담아서 저장
+        // -> 유사배열 (실제로는 배열이 아니다 (배열인 척 하는 객체))
+        function argsTest2() {
+            const result = document.getElementById("argsResult");
+
+            console.log("arguments : " + arguments); // object타입으로 출력
+
+            // console.log(arguments[3]); 
+
+            for (let i = 0; i < arguments.length; i++) {
+                result.innerHTML += arguments[i];
+            }
+
+            //result.innerHTML = value1 + " " + value2;
+        }
+
+        // 매개변수보다 많은 데이터가 전달되면 초과된 데이터는 무시
+        // 매개변수보다 적은 데이터가 전달되면 undefined가 발생 ( ex)입력 undefined )
+        function argsTest(value1, value2) {
+            const result = document.getElementById("argsResult");
+
+            result.innerHTML = value1 + " " + value2;
+        }
+
+
+        // 2. *익명 함수  
+        // -> 한번 사용하는 기능이 필요할 때 주로 사용됨
+        const add = function (num1, num2) {
+            console.log(num1 + num2)
+        }
+        add(10, 20);
+
+
+        // 3. **화살표 함수 
+        // -> 코드 라인 줄이기 위헤서 사용 
+        // -> return이 없어도 반환이 된다.(생략가능)
+        const add2 = (num1, num2) => console.log(num1 + num2); // 보통 코드 한줄로 끝날때 ;으로 끝난다 : return값 자동 반환
+        add2(20, 30); // num1, num2
+
+        const add3 = (num1, num2) => num1 + num2;
+        console.log(add3(40, 50));
+
+
+        // 4. 생성자 함수 
+        // -> 관례적으로 생성자 함수는 앞 글자를 대문자로 표시
+        // -> 객체를 재사용하기 위해서 사용
+        function Person(name, age) {
+            this.name = name; // 자기 자신을 가리킨다 this.
+            this.age = age;
+            this.walk = function () {
+                // console.log("걷는중");
+                return "걷는중";  // 사용X
+            }
+            console.log(name + age);
+        }
+        //person("하혜미", 20)
+
+        const p1 = new Person("뭉봄이", 20); // 객체생성
+        const p2 = new Person("봄봄이", 20); // 객체생성
+        console.log(p1.walk());
+
+        console.log(p1);
+        console.log(p2);
+
+        p1.name = "멍멍이";  // 재사용
+        console.log(p1);
+        console.log(p2);
+
+        p2.name = "강아지"; // 재사용
+        console.log(p2);
+
+
+        // 5. 내부 함수 
+        // -> 함수 안에 함수가 있는 구조
+        function outerFunc() {
+            let number = 10;
+            console.log("outer 함수 실행");
+
+            function innerFunc() {
+                console.log("number 값 : " + number);
+            }
+
+            innerFunc();
+            console.log("outer 함수 종료")
+
+        }
+
+        outerFunc();
+
+
+        // 6. 재귀 함수 : 자기 자신을 호출하는 구조를 가진 함수
+        function recursive(count) {
+            console.log("호출됨");
+
+            if (count === 0) {
+                console.log("카운트가 종료되었습니다.");
+            }
+            else {
+                console.log("카운트 : " + count);
+                recursive(count - 1); // 자기자신 호출 : 호출 할때마다 count - 1 실행
+            }
+        }
+
+        recursive(3);
+
+        function getFactorial(num) { // 3, 2, 1, 0
+            if (num === 0) { //0 일때는  1을 리턴해서 재귀 함수 종료
+                return 1;
+            }
+            else {
+                return num * getFactorial(num - 1); // 3*(함수호출) 2*(함수호출) 1*(함수호출)
+            }
+        }
+        console.log(getFactorial(3));
+
+
+        // 7. 콜백 함수 : 매개변수 자리에 함수가 들어가는 구조
+        //  -> 비동기 프로그래밍을 할 때 자주 사용됨
+        // 비동기 :요청을 보낸 후 응답과 관계없이 다음 동작을 실행할 수 있는 방식
+
+        // setTimeout()-이미 만들어진 메서드 : 특정 시간이 지난 다음에 코드를 실행하는 함수 5000:5초, 500:0.5초...
+        setTimeout(function () {
+            console.log("5초가 지났습니다."); // ASD 출력 후함수 실행
+        }, 5000);
+        console.log("ASD"); // 먼저 실행
+        // 비동기식이여서 5초동안 다른 코드를 출력
+
+        function first(callback) {
+            console.log("first 함수 실행"); 
+
+            if(typeof callback === 'function'){
+                callback();
+            }
+
+            callback();
+        }
+
+        first(function(){
+            console.log("second 함수 실행");
+        });
+
+        //다른 방식
+        function firstFunc(callback){
+            console.log("firstFunc 함수 실행");
+            callback();
+        }
+
+        function secondFunc() {
+            console.log("secondFunc 함수 실행");
+        }
+
+        firstFunc(secondFunc); // 함수 자체의 코드를 매개변수로 받음
+
+    </script>
+</body>
+
+</html>
