@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3> 1. 사용자로부터 숫자를 입력 받아, 입력된 숫자의 절댓값을 계산하여 div 태그에 출력하세요.</h3>
+    <input type="text" id="input-num" placeholder="절대값">
+    <button onclick="getAbs()">클릭</button>
+    <div id="result-abs"></div>
+
+
+    <script>
+        function getAbs() {
+            const inputNum = document.getElementById("input-num").value;
+            const resultAbs = document.getElementById("result-abs");
+
+            resultAbs.innerHTML = inputNum + "의 절대값은 : " + Math.abs(inputNum);
+        }
+    </script>
+
+    <hr>
+
+    <h3> 2. 사용자로부터 문자열을 입력 받고, 해당 문자열의 길이를 계산하여 div 태그에 출력하세요.</h3>
+    <input type="text" id="input-str" placeholder="문자열의 길이">
+    <button onclick="getLength()">클릭</button>
+    <div id="result-length"></div>
+
+
+    <script>
+        function getLength() {
+            const inputStr = document.getElementById("input-str").value;
+            const resultLength = document.getElementById("result-length");
+
+            let count = 0;
+            for(let i = 0; i > inputStr.length; i++) {
+                count++;
+            }
+
+            resultLength.innerHTML = "문자열의 길이 : " + inputStr.length;
+        }
+        
+    </script>
+
+    <hr>
+
+    <h3> 3. 사용자로부터 세 개의 숫자를 입력 받아, 입력된 숫자들의 합을 계산하여 div 태그에 출력하세요.</h3>
+    <input type="text" id="num-1" placeholder="숫자를 입력하세요.">
+    <input type="text" id="num-2" placeholder="숫자를 입력하세요.">
+    <input type="text" id="num-3" placeholder="숫자를 입력하세요.">
+    <button onclick="getSum()">클릭</button>
+    <div id="result-sum"></div>
+
+    <script>
+        function getSum() {
+            const num1 = parseInt(document.getElementById("num-1").value);
+            const num2 = parseInt(document.getElementById("num-2").value);
+            const num3 = parseInt(document.getElementById("num-3").value);
+            const resultSum = document.getElementById("result-sum");
+
+            resultSum.innerHTML = "합계 : " + (num1 + num2 + num3);
+        }
+    </script>
+
+    <hr>
+
+    <h3> 4. 사용자로부터 두 개의 숫자를 입력 받아, 두 숫자 중 작은 숫자를 찾아 div 태그에 출력하세요.</h3> <!--if문 사용-->
+    <input type="text" id="num-var1" placeholder="숫자를 입력하세요">
+    <input type="text" id="num-var2" placeholder="숫자를 입력하세요">
+    <button onclick="getMin()">클릭</button>
+    <div id="result-min"></div>
+
+    <script>
+        function getMin() {
+            const numVar1 = document.getElementById("num-var1").value
+            const numVar2 = document.getElementById("num-var2").value
+            const resultMin = document.getElementById("result-min");
+
+            resultMin.innerHTML = "최소값 : " + Math.min(numVar1, numVar2);
+        }
+    </script>
+
+    <hr>
+
+    <h3> 5. 사용자로부터 문자열을 입력 받아, 해당 문자열을 모두 대문자로 변환하여 div 태그에 출력하세요.</h3>
+    <input type="text" id="input-str2" placeholder="대문자">
+    <button onclick="getUpper()">클릭</button>
+    <div id="result-up"></div>
+
+    <script>
+        function getUpper() {
+            const inputStr2 = document.getElementById("input-str2").value;
+            const resultUp = document.getElementById("result-up");
+
+            resultUp.innerHTML = inputStr2.toUpperCase();
+        }
+    </script>
+
+    <hr>
+
+    <h3> 6. 사용자로부터 두 개의 숫자를 입력 받아, 두 숫자의 차이를 계산하여 div 태그에 출력하세요.</h3> <!--출력값 절대값으로-->
+    <input type="text" id="num-4" placeholder="숫자를 입력하세요.">
+    <input type="text" id="num-5" placeholder="숫자를 입력하세요.">
+    <button onclick="subBnt()">클릭</button>
+    <div id="sub-result"></div>
+
+    <script>
+        function subBnt() {
+            const num4 = parseInt(document.getElementById("num-4").value);
+            const num5 = parseInt(document.getElementById("num-5").value);
+            const subResult = document.getElementById("sub-result");
+
+            subResult.innerHTML = num4 - num5;
+        }
+    </script>
+
+    <hr>
+
+    <h3> 7. 사용자로부터 숫자를 입력 받고, 해당 숫자가 양수인지, 음수인지, 또는 0인지 판별하여 결과를 alert으로 출력하세요.</h3>
+    <input type="text" id="q7-num" placeholder="숫자를 입력하세요.">
+    <button onclick="q7bnt()">클릭</button>
+
+    <script>
+        
+        
+        function q7bnt() {
+            const q7Num = parseInt(document.getElementById("q7-num").value);
+            if(q7Num === 0) {
+                alert(q7Num + " 입니다.");
+            }
+            else if(q7Num  > 0) {
+                alert(q7Num + " 양수 입니다.");
+            }
+            else if(q7Num  < 0) {
+                alert(q7Num + " 음수 입니다.");
+            }
+        }
+        
+    </script>
+    <h3> 8. 사용자로부터 두 개의 숫자를 입력 받아 더한 결과를 alert으로 출력하세요.</h3>
+    <input type="text" id="q8-num1" placeholder="숫자를 입력하세요">
+    <input type="text" id="q8-num2" placeholder="숫자를 입력하세요">
+    <button onclick="q8bnt()">클릭</button>
+
+    <script>
+        function q8bnt() {
+            const q8Num1 = parseInt(document.getElementById("q8-num1").value);
+            const q8Num2 = parseInt(document.getElementById("q8-num2").value);
+
+            alert("두 숫자의 합계 : " + (q8Num1 + q8Num2));
+        }
+    </script>
+
+    <h3> 9. 사용자로부터 세 개의 숫자를 입력 받아 가장 큰 숫자를 alert으로 출력하세요.</h3> 
+            <!--배열에 넣어서 for문-->
+            <input type="text" id="q9-num1" placeholder="숫자를 입력하세요">
+            <input type="text" id="q9-num2" placeholder="숫자를 입력하세요">
+            <input type="text" id="q9-num3" placeholder="숫자를 입력하세요">
+            <button onclick="q9bnt()">클릭</button>
+
+            <script>
+                function q9bnt() {
+                    const q9Num1 = parseInt(document.getElementById("q9-num1").value);
+                    const q9Num2 = parseInt(document.getElementById("q9-num2").value);
+                    const q9Num3 = parseInt(document.getElementById("q9-num3").value);
+
+                    let q9NumArr = [q9Num1, q9Num2, q9Num3];
+                    let max = q9NumArr[0];
+                    for(let i = 0; i < q9NumArr.length; i++) {
+                        if(max < q9NumArr[i]) {
+                            max = q9NumArr[i];
+                        }
+                    }
+                    alert("최대값 : " + max);
+                }
+            </script>
+            
+</body>
+</html>
