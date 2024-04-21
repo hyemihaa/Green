@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .color-box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            background-color: lightcoral;
+        }
+        
+    </style>
+</head>
+<body>
+    <h4>1. 버튼을 클릭할 때 마다 div 박스의 색깔을 red->blue->red 로 바꾸세요. => 익명 함수 </h4>
+    <div class="color-box" style="background-color: red;"></div> <br>
+    <button onclick="colorChange()">색상 변경</button>
+
+
+    <script>
+
+        const colorChange = function() {
+            const colorBox = document.getElementsByClassName("color-box")[0]; // 현재 인덱스 번호[]지정
+            const nowColor = colorBox.style.backgroundColor; // red - string타입 (현재색상)
+            
+            //내 현재 색상이 red일 때 blue로 변경
+            if(nowColor === "red") {
+                colorBox.style.backgroundColor = "blue"; // 색상도 ""안에 적어야 한다
+            }
+            // 내 현재 색상이 blue일 때 red로 변경
+            else if(nowColor === "blue"){
+                colorBox.style.backgroundColor = "red";
+            }
+            console.log(colorChange);
+        }
+        colorChange();
+
+    </script>
+
+    <hr>
+
+    <h4>2. 입력한 숫자에서 3과 5의 공배수 출력 => 익명 함수</h4>
+    <input type="text" id="input-num" placeholder="숫자를 입력하세요.">
+    <button onclick="getMultiple()">공배수 출력</button>
+    <div id="result-mul"></div>
+
+    <script>
+        const getMultiple = function() {
+            const inputNum = document.getElementById("input-num").value;
+            const resultMul = document.getElementById("result-mul");
+            
+            for(let i = 0; i <= inputNum; i++) {
+                if(i % 3 === 0 && i % 5 === 0) {
+                    const resultCommonMul = i;
+                    console.log(i);
+                    resultMul.innerHTML += "3과 5의 공배수 : " + resultCommonMul + "<br>";
+                }
+            }
+
+        }
+    </script>
+
+    <hr>
+
+    <h4>3. 입력한 숫자의 팩토리얼 출력 => 화살표 함수</h4>
+    <input type="text" id="input-num2" placeholder="숫자를 입력하세요.">
+    <button onclick="getFactorial()">팩토리얼 출력</button>
+    <div id="result-fac"></div>
+
+    <script>
+        const getFactorial = () => { // 코드가 여러줄일때 {}로 묶어준다. return설정은 해줘야 한다.
+            const inputNum2 = document.getElementById("input-num2").value;
+            const resultFac = document.getElementById("result-fac");
+            
+            // 10! = 1*2*3*4*5*6*7*8*9*10 
+            let numVar = 1; // const : 상수 (변하지 않는 값)
+            for(let i = 1; i <= inputNum2; i++) {
+                numVar = numVar * i;
+                // console.log(numVar);
+                resultFac.innerHTML = numVar;
+            }
+        }
+    </script>
+
+    <hr>
+
+    <h4>4. 국어,영어,수학,과학 점수를 입력받고 평균,합계 출력 => 화살표 함수 </h4>
+    <input type="text" id="input-kor" placeholder="국어점수를 입력하세요."> <br>
+    <input type="text" id="input-eng" placeholder="영어점수를 입력하세요."> <br>
+    <input type="text" id="input-mat" placeholder="수학점수를 입력하세요."> <br>
+    <input type="text" id="input-sci" placeholder="과학점수를 입력하세요."> <br>
+    <br>
+    <button onclick="getSum()">합계 출력</button> 
+    <div id="result-sum"></div> <!--합계출력div-->
+    <button onclick="getAvg()">평균 출력</button> 
+    <div id="result-avg"></div> <!--평균출력div-->
+
+    <script>
+        const getSum = () => {
+            const inputKor = document.getElementById("input-kor").value;
+            const inputEng = document.getElementById("input-eng").value;
+            const inputMat = document.getElementById("input-mat").value;
+            const inputSci = document.getElementById("input-sci").value;
+            const resultSum = document.getElementById("result-sum");
+            
+            resultSum.innerHTML = "합계점수 : " + (parseInt(inputKor) + parseInt(inputEng) + parseInt(inputMat) + parseInt(inputSci));
+        }
+        const getAvg = () => {
+            const inputKor = parseInt(document.getElementById("input-kor").value);
+            const inputEng = parseInt(document.getElementById("input-eng").value);
+            const inputMat = parseInt(document.getElementById("input-mat").value);
+            const inputSci = parseInt(document.getElementById("input-sci").value);
+            const resultAvg = document.getElementById("result-avg");
+            
+            resultAvg.innerHTML = "평균점수 : " +((inputKor + inputEng + inputMat + inputSci) / 4)
+        }
+
+        
+    </script>
+
+
+
+
+    <!-- <script>
+        function getAvg() {
+            const inputKor = getValue("input-kor"); // 아래서 만든 함수 호출(id 입력)
+            const inputEng = getValue("input-eng");
+            const inputMat = getValue("input-mat");
+            const inputSci = getValue("input-sci");
+            const resultAvg = document.getElementById("result-avg");
+
+            resultAvg.innerHTML = "평균점수 : " +((inputKor + inputEng + inputMat + inputSci) / 4)
+
+    }
+    </script>
+
+    중복되는 코드를 함수로 만들어서 리턴해서 사용 ( 남용은 안하는게 좋다 - 보통 중복코드가 3개초과할 때 부터 사용)
+    <script>
+        function getValue(id) {
+            return parseInt(document.getElementById(id).value);
+        }
+    </script> -->
+
+</body>
+</html>
