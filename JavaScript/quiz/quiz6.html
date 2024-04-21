@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3> Q1. 버튼 클릭할 때 마다 버튼의 이름과 내용을 변경</h3>
+    <h4>1. 처음 버튼의 이름 : “버튼을 클릭 해주세요.” </h4>
+    <h4>2. 최초 버튼 클릭 시 아래와 같이 변경됨</h4>
+    <h4>-> 버튼명(myButton) : 클릭 되었습니다!</h4>
+    <h4>-> 버튼 내용(output) : 버튼이 클릭 되었습니다.</h4>
+    <h4>3. 이후 버튼 클릭 시 아래와 같이 변경됨</h4>
+    <h4>-> 버튼명(myButton) : 취소 되었습니다!</h4>
+    <h4>-> 버튼 내용(output) : 버튼이 취소 되었습니다.</h4>
+    <h4>4. 이후 클릭과 취소가 번갈아 가며 변경</h4>
+    <br><br>
+    <button id="myButton">버튼을 클릭 해주세요.</button>
+    <p id="output"></p>
+
+    <script>
+        const btn = document.getElementById("myButton");
+        const output = document.getElementById("output");
+        let flag = true;
+
+        btn.addEventListener('click', function(){
+            if(flag) {
+                flag = false;
+                btn.innerHTML = "클릭 되었습니다!";
+                output.innerHTML = "버튼이 클릭되었습니다.";
+            }
+            else {
+                flag = true;
+                btn.innerHTML = "취소 되었습니다!";
+                output.innerHTML = "버튼이 취소되었습니다.";
+            }
+        // flag = !flag;  --> 이런식으로 if문 밖에 따로 코드 작성도 가능하다. flag 값을 토글
+        
+        // flag변수의 값을 반전시켜서 번갈아가며 클릭과 취소를 구현
+        // 특정 동작을 수행할지 말지 결정하는 변수를 플래그라고 부른다.
+        })
+        
+        
+        
+    </script>
+</body>
+
+</html>
