@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p> window 객체 : 자바스크립트 최상위 객체 </p>
+    <!-- window 객체는 탭(각각의 페이지)마다 존재  -->
+    <ol>
+        <li>BOM(Browser Object Model) : 브라우저의 주소창과 관련되어 있음 </li>
+        <li>DOM(Document Object Model) : 그외 나머지 다 (HTML요소, 팝업창,...) </li>
+    </ol>
+
+    <h3>window.open()</h3>
+    <button onclick="windowTest1()">실행</button>
+
+    <script>
+        function windowTest1() {
+            // window.open("https://www.naver.com", "네이버페이지", "width=500px, height=500px"); // 브라우저에 크롬창을 새로 생성
+            // 인자값 : url, 탭창 명(이름), 속성
+            window.open("https://www.naver.com"); // 보통 이렇게만 사용
+        }
+    </script>
+
+    <h3>타이머에 관련된 함수</h3>
+    <ol>
+        <li>setTimeout : 시간에 맞게 한번만 실행</li>
+        <li>setInterval : 시간마다 반복</li>
+    </ol>
+
+    <button onclick="WindowTest2()">실행</button> <br>
+
+    <script>
+        function WindowTest2() {
+            // setTimeout(function() {
+            //     alert("2초가 지났습니다.");
+            // }, 2000);
+
+            const newNaver = window.open("https://www.naver.com");
+            newNaver.alert("3초뒤 사라짐");
+
+            setTimeout(function () {
+                newNaver.close();
+            }, 3000);
+        }
+    </script>
+
+    <button onclick="WindowTest3()">interval</button>
+    <div id="test-3"></div>
+    <script>
+        function WindowTest3() {
+            const result = document.getElementById("test-3");
+
+            const intervalConle = setInterval(function () {
+                const date = new Date(); //이미 만들어져있는 Date
+                console.log(date);
+                // result.innerHTML = date;
+            }, 1000)
+
+            setTimeout(function () {
+                clearInterval(intervalConle);
+            }, 3000) //3초뒤 중단
+        }
+    </script>
+
+    <h3> BOM(Browser Object Model) : 브라우저의 주소창과 관련되어 있음 </h3>
+    <ol>
+        <li>location 객체</li>
+        <li>screen 객체</li>
+        <li>navigator 객체</li>
+        <li>history 객체</li>
+    </ol>
+    <span onclick="location.href='https://www.naver.com'">aaaa</span>
+    <button onclick="location.href='https://www.naver.com'">location</button>
+    <button onclick="location.assign('https://www.naver.com')">location</button>
+    <button onclick="location.replace('https://www.naver.com')">location</button>
+
+    <hr>
+
+    <button onclick="console.log(screen)">screen</button>
+    <button onclick="console.log(navigator)">navigator</button>
+    <button onclick="console.log(history)">history</button>
+
+    <hr>
+    <br><br>
+
+    <h3>DOM(Document Object Model) : BOM 외 나머지 다 </h3>
+    <p>
+        <!-- <h3>DOM(Document Object Model) : BOM 외 나머지 다 </h3>
+            전체한줄 Node, <h3></h3> 요소 노드, 텍스트 텍스트 노드
+        -->
+        노드(Node) : HTML에 있는 각각의 태그 <br>
+        - 요소 노드 (Element Node) : 태그 그 자체를 의미 <br>
+        - 텍스트 노드 (Text Node) : 태그 안에 있는 텍스트를 의미 <br>
+
+        - 텍스트 노드가 존재하는 요소 : div, a, h1, p, pre, span, ... <br>
+        ex) 시작태그와 종료태그 사이에 텍스트를 넣을 수 있는 태그들 <br>
+        - 텍스트 노드가 존재하지 않는 요소 : img, input, br, ... <br>
+    </p>
+
+    <button onclick="createEle()">요소 생성</button>
+    <div id="result-3"></div>
+
+    <script>
+        function createEle() {
+            const result = document.getElementById("result-3");
+
+            //방법 1
+            result.innerHTML = "<p>태그 생성중</p>";
+
+            //방법 2
+            // document 메서드를 사용하여 요소 객체 생성
+
+            // const elementNode = <h3></h3> 생성
+            const elementNode = document.createElement("h3"); // 태그생성
+            elementNode.style.color = "red";  // 태그에 속성 추가
+
+            // const TextNode = "안녕하세요" 생성
+            const textNode = document.createTextNode("안녕하세요");
+
+            elementNode.appendChild(textNode); // 요소 추가
+            // <h3>
+            //    안녕하세요
+            // </h3>
+            // h3(요소노드)의 자식(텍스트 요소) 
+
+            result.appendChild(elementNode); // 위의 작업으로 elementNode는 <h3>안녕하세요<h3>태그 생성
+            // div태그 요소에 추가 
+
+            //<img src=>
+            const img = document.createElement("img");
+            img.src = "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimg.lovepik.com%2Fphoto%2F20211201%2Fmedium%2Flovepik-cute-dog-coki-picture_501373456.jpg&type=sc960_832";
+            img.width = "200";
+            img.height = "200";
+
+            result.appendChild(img);
+        }
+    </script>
+
+    <hr>
+    <br>
+
+    <!-- 
+        버튼을 클릭할 때 마다 span의 자식요소로 "안녕하세요"+숫자 생성
+            -> p태그
+            -> 색상은 blue
+            -> 폰트사이즈는 16px
+        ex) 안녕하세요1, 안녕하세요2, 안녕하세요3, 안녕하세요4, ...
+    
+    -->
+    <button onclick="craeteEle2()">요소 생성 실습</button>
+    <div id="result-4">
+        <span id="child-result">
+
+        </span>
+    </div>
+
+    <script>
+        
+        // 보통 댓글창에 많이 쓰임
+
+        let count = 0; // 함수안에 선언시 계속 초기화가 진행되므로 함수가 끝나도 값이 유지되도록 밖에 선언
+        function craeteEle2() {
+            count++; // 숫자 증가
+
+            const childResult = document.getElementById("child-result");
+
+            // p요소 생성
+            const elementNode = document.createElement("p");
+            elementNode.style.color = "blue";
+            elementNode.style.fontSize ="16px";
+
+            // "안녕하세요" 생성
+            const textNode = document.createTextNode("안녕하세요" + count);
+            
+            // span태그안에 p태그 추가
+            childResult.appendChild(elementNode);
+            // span태그안에 텍스트 노드 추가
+            elementNode.appendChild(textNode);
+        }
+    </script>
+
+
+    <br>
+    <hr>
+
+    <input type="text" id="input-text">
+    <button onclick="addBnt()">추가</button>
+    <ul id="result-5"></ul>
+    
+
+    <script>
+        // function getBnt() {
+        //     const inputText = document.getElementById("input-text").value; // 사용자가 입력받는 값
+        //     const result5 = document.getElementById("result-5"); //ul태그
+
+        //     const liElement = document.createElement("li"); // li요소 생성
+            
+        //     const textNode = document.createTextNode(inputText); 
+
+        //     liElement.appendChild(textNode);
+        //     result5.appendChild(liElementv);
+        // }
+
+        function addBnt() {
+            const inputText = document.getElementById("input-text"); // 사용자가 입력받는 값
+            const result5 = document.getElementById("result-5"); //ul태그 
+
+            const liElement = document.createElement("li"); // li요소 생성
+            liElement.innerHTML = inputText.value; // liElement요소에 inputText 값 출력
+
+            // result5.appendChild(liElement);// ul태그에 li요소 추가
+            
+            // 삭제 버튼 생성
+            const deletBnt = document.createElement("button"); //<button></button>
+            deletBnt.innerHTML = "X"; //<button>X</button>
+            
+            deletBnt.addEventListener('click', function() { //deletBnt에 요소추가 : 클릭될 때 마다 생성된 li 삭제
+                //removeChild : 자식 요소 삭제
+                result5.removeChild(liElement);
+            })
+            
+            liElement.appendChild(deletBnt); // li요소에 deletBnt(버튼)추가 
+            
+            result5.appendChild(liElement);// ul태그에 li요소 추가
+
+            inputText.value = ""; // 텍스트창 비우기 (텍스트 출력후)
+
+        }
+    </script>
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+
+</html>
