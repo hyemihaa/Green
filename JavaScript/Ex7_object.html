@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="testObject()">클릭</button>
+    <div id="result-1"></div>
+
+    <script>
+        function testObject() {
+            const result = document.getElementById("result-1");
+
+            const member = {
+                name : "홍길동",
+                age : 19,
+                addr : "안양"
+            }
+
+            console.log(member);
+
+            result.innerHTML = "name : " + member.name + "<br>"; // .name : 멤버 객체 안에있는 name 변수(바로 접근) -> 권장
+            result.innerHTML += "age : " + member["age"] + "<br>"; 
+            result.innerHTML += "addr : " + member.addr + "<br>";
+
+            //object : 키값을 출력
+            for(let item in member) { // for each문 : member의 키값(속성)을 하나씩 꺼내서 item에 담는다
+                                                    // 키값(속성) = name, age, addr 이다
+                // console.log(item);
+                console.log(member.item); // member라는 객체에 .item이라는 키(변수)가 있는지 확인 -> 없으므로 -> undefined
+                console.log(member[item]); // [item]은 변수로 접근 가능 -> for문으로 추출할 때는 []로 쓴다.
+            }
+
+            console.log("name" in member); // true출력 , 멤버라는 객체안에 name이라는 속성이 있는지
+
+
+
+        }
+    </script>
+
+    <button onclick="testObject2()">클릭</button>
+    <div id="result-2"></div>
+
+    <script>
+        // 함수 호출시 this
+        
+        function testObject2() {
+            const result = document.getElementById("result-2");
+
+            const car = {
+                name : "스포티지",
+                type : "SUV",
+                drive : function(des) { // 익명함수(일반함수) : this (자기자신 : car) 
+                    console.log(this.name) // 자기자신 - "스포티지"
+                    result.innerHTML = "종류 : " + this.name + "<br>";
+                    result.innerHTML = "타입 : " + this.type + "<br>";
+                    result.innerHTML = "목적지 : " + des + "<br>";
+                },
+                testDrive : (des) => { // 화살표 함수 : this 
+                    console.log(this.name) // (생성 시점을 기준으로) 상위스코프 window - 출력X (window에 name이라는 속성이 없어서)
+                    result.innerHTML = "종류 : " + this.name + "<br>";
+                    result.innerHTML = "타입 : " + this.type + "<br>";
+                    result.innerHTML = "목적지 : " + des + "<br>";
+                }
+            }
+
+            // car.drive("서울");
+            // car.testDrive("부산");
+
+            const object1 = {
+                name : "홍길동",
+                exec : function() { // exec 키값 -> 함수
+                    console.log(this.name); 
+                    const name = "하혜미";
+
+                    const innerArrow = () => {
+                        console.log(this.name); // (생성 시점을 기준으로) 상위스코프 object1로 이동 : name : "홍길동" 출력
+                    }
+                    innerArrow();
+                },
+                execArrow : () => {
+                    console.log(this.name); 
+                }
+            }
+            object1.exec();
+            object1.execArrow();
+        }
+
+        console.log("-----------------------------")
+        // 객체배열
+        const member1 = {name:"뭉구", age: 19, addr:"안양"};
+        const member2 = {name:"봄이", age: 25, addr:"부산"};
+        const member3 = {name:"혜미", age: 30, addr:"서울"};
+        
+        let members =  [member1, member2, member3];
+        
+        console.log(members[0].age);
+        console.log(members[1].name);
+        console.log(members[2].age);
+        console.log("-----------------------------")
+        
+        let sum = 0;
+        let avg = 0;
+        
+        // for(let i = 0; i < members.length; i++) {
+            //     sum += members[i].age;
+            // }
+            // avg = sum/members.length;
+            
+            // console.log(sum);
+            // console.log(avg);
+            
+            for(let i = 0; i < members.length; i++) {
+                members[i].getSum = function() { // getSum이라는 함수를 members에 생성 
+                    return this.age;
+                }
+            }
+
+        for(let i = 0; i < members.length; i++) {
+            console.log(members[i].getSum()); // 함수 호출해서 사용
+        }
+        console.log("-----------------------------")
+        
+
+    </script>
+
+
+</body>
+</html>
