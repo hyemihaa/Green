@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05_element.html</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+
+</head>
+<body>
+    <button onclick="elementAdd()">생성</button>
+    <ul id="list">
+
+    </ul>
+
+    <script>
+        const list = $("#list"); //ul요소
+
+        function elementAdd() {
+            const listItem = $("<li></li>").html("리스트").css("color", "red"); //li요소 생성
+            console.log(listItem);
+
+            list.append(listItem); // 추가
+            listItem.remove(); // 삭제
+        }
+    </script>
+</body>
+</html>

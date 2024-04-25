@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_event.html</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+    <style>
+        .in-color {
+            background-color:palevioletred;
+        }
+        .out-color {
+            background-color: darkcyan;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <input type="text" placeholder="아이디"> <br>
+        <input type="password" placeholder="패스워드"> <br> 
+        <button type="button" class="submit-button">등록1</button>
+        <button type="button" class="submit-button">등록2</button>
+        <button type="button" class="submit-button">등록3</button>
+    </form>
+
+    <script>
+        // 버튼 클릭 이벤트 1.
+        // $("#submit-button").click(function() { 
+        //     alert($("input[type=password]").val()); // input태그의 type이 password의 값 가져오는 코드
+        // })
+        
+        // 버튼 클릭 이벤트 2.*권장 (.on) : 여러개의 이벤트 가능
+        // $("#submit-button").on('click', function() {
+        //     alert($("input[type=password]").val()); // input태그의 type이 password의 값 가져오는 코드
+        // })
+        
+        // // 마우스가 요소 안으로 들어갈 때 발생하는 이벤트 : mouseenter
+        // $(".submit-button").on('mouseenter', function() {
+        //     console.log($(".submit-button"));
+        //     $(this).css("background-color", "aqua"); // this : 이벤트가 발생한 요소(자기자신) -> 즉 선택한 요소만 이벤트 발생
+        //     // $(".submit-button").css("backgroundColor", "pink");
+        // })
+        
+        // 마우스가 요소 밖으로 나갈 때 발생하는 이벤트 : mouseout
+        // $(".submit-button").on('mouseout', function() {
+        //     console.log($(".submit-button"));
+        //     $(this).css("background-color", "pink"); // this : 이벤트가 발생한 요소(자기자신) -> 즉 선택한 요소만 이벤트 발생
+        // })
+
+        // $(".submit-button").hover(function() { // .hover(콜백함수1,콜백함수2)
+        //     // $(this).css("background-color", "yellow");
+        //     $(this).addClass("in-color");
+        // }, function() {
+        //     $(this).addClass("out-color");
+        // })
+        
+        $(".submit-button").hover(function() { // .hover(콜백함수1,콜백함수2) 
+            $(this).addClass("in-color");
+        }, function() {
+            $(this).removeClass("in-color"); // 콜백함수2 -> class제거 (다시 원래대로 돌아옴)
+        })
+    </script>
+
+    <hr>
+    <select name="" id="movie">
+        <option value="명량">명량</option>
+        <option value="범죄도시">범죄도시</option>
+        <option value="서울의봄">서울의봄</option>
+        <option value="파묘">파묘</option>
+    </select>
+    <p>선택된 영화 : <span id="result-movie"></span> 입니다.</p>
+
+    <script>
+        $("#movie").on('change', function() {
+            console.log($(this).val());
+
+            const selectedMovie = $(this).val(); // 사용자 선택값 변수
+            const resultMovie = $("#result-movie"); // span요소
+
+            resultMovie.html(selectedMovie); // 사용자가 선택한 무비 출력
+        })
+    </script>
+
+</body>
+</html>

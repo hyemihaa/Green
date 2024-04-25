@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03_filter.html</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>이름</td>
+                <td>나이</td>
+                <td>주소</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>뭉구</td>
+                <td>7</td>
+                <td>안양</td>
+            </tr>
+            <tr>
+                <td>봄</td>
+                <td>4</td>
+                <td>서울</td>
+            </tr>
+            <tr>
+                <td>혜미</td>
+                <td>20</td>
+                <td>부산</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        $("tr:first").css("color", "gray"); // tr태그의 첫번쨰
+        $("tr:last").css("color", "gray"); //tr태그의 마지막
+        $("tr:even").css("color", "blue"); //tr태그 짝수
+        $("tr:odd").css("color", "pink"); //tr태그 홀수
+    </script>
+
+    <hr>
+
+    <p>텍스트1</p>
+    <p class="filter-test">텍스트2</p>
+    <p class="filter-test">텍스트3</p>
+    <p>텍스트4</p>
+    <p>텍스트5</p>
+
+    <script>
+        $("p").first().css("color", "green"); // p태그중 첫번쨰
+        $("p").last().css("color", "red"); // p태그중 마지막
+
+        // filter : 선택된 요소를 변경
+        $("p").filter(".filter-test").html("<span>선택</span>"); //p태그 - class선택자 .html -> <span>태그로 인식해서 텍스트만 출력
+        
+        $("p").not(".filter-test").text("<span>not사용</span>"); //p태그 - class선택자를 제외하고 다 .text -> <span>를 문자열로 인식
+        
+    
+            $("p").eq(3).css("color", "yellow"); // p태그중 3번째 요소 (인덱스)
+    </script>
+</body>
+</html>

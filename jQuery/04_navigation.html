@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_navigation.html</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+    <style>
+        .wrap {
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="wrap">
+        <div> div
+            <ul> ul
+                <li> li
+                    <span>
+                        span
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 부모 요소 탐색 메서드
+        // 1. parent() : 선택된 요소의 바로 위 상위 요소 한개만 선택
+        // 2. parents() : 모든 상위 요소들을 선택
+        // 3. parents("선택자") : 모든 상위 요소들 중에서 선택자와 일치하는 요소만 선택
+
+        $("span").parent().css("color" ,"green");
+
+        $("li").parents("div").css("color", "red");
+    </script>
+
+    <hr>
+
+    <div class="wrap">
+        <div> div
+            <ul> ul
+                <li> li
+                    <span>
+                        span
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 자식요소 탐색 메서드
+        // 1. children() : 모든 자식 요소 선택
+        // 2. children("선택자") : 모든 자식요소 중에서 선택자가 일치하는 요소만 선택
+        // 3. find("선택자") : 모든 후손요소 중에서 선택자가 일치하는 요소만 선택
+
+        const borderStyle = {color:"green", border:"1px solid green"};
+        // $(".wrap").children().css(borderStyle);
+        $(".wrap").children().children().css(borderStyle); // 연달아 쓰면 div > div > ul
+        $(".wrap").find("li").css("color", "blue"); 
+        
+    </script>
+</body>
+</html>
