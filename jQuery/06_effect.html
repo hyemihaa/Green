@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+    <style>
+        div {
+            background-color: plum;
+            width: 300px;
+            height: 50px;
+            text-align: center;
+            border: 1px solid deeppink;
+            cursor: pointer;
+        }
+
+        p {
+            border: 1px solid purple;
+            width: 300px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h3>show(), hide(), toggle()</h3>
+    <button id="hide-bnt">숨기기</button>
+    <button id="show-bnt">보이기</button>
+    <button id="toggle-bnt">토글</button>
+    <br><br>
+    <img src="./img/수지.jpg" alt="수지" id="suzy" width="200px" height="200px">
+    <div id="div-area" style="width:200px; height: 200px; background: pink;"></div>
+
+    <script>
+        // show, hide, toggle
+        $("#hide-bnt").click(function() {
+            $("#suzy").hide(5000);
+            $("#div-area").hide(2000);
+        })
+
+        $("#show-bnt").click(function() {
+            $("#suzy").show(5000);
+            $("#div-area").show(2000);
+        })
+
+        $("#toggle-bnt").click(function() {
+            $("#suzy").toggle(5000);
+            $("#div-area").toggle(2000);
+        })
+    </script>
+
+    <hr>
+
+    <h3>fadeIn(), fadeOut(), fadeToggle()</h3>
+    <button id="fadeOut">숨기기</button>
+    <button id="fadeIn">보이기</button>
+    <button id="fadeToggle">토글</button>
+    <br><br>
+    <img src="./img/KakaoTalk_20240425_152622598.jpg" id="fade-mung" alt="뭉구" width="200px" height="200px">
+
+    <script>
+        $("#fadeOut").click(function() {
+            $("#fade-mung").fadeOut(2000);
+        })
+        $("#fadeIn").click(function() {
+            $("#fade-mung").fadeIn(3000);
+        })
+        $("#fadeToggle").click(function() {
+            $("#fade-mung").fadeToggle(3000);
+        })
+    </script>
+
+    <hr>
+
+    <h3>slideDoWn(), slideUp()</h3>
+    <div>질문 1: 소프트웨어 개발 주기(SDLC)란?</div>
+    <p>답변: 소프트웨어를 만드는 과정으로, 계획, 디자인, 개발, 테스트, 배포, 유지보수가 포함됩니다.</p>
+    
+    <div>질문 2: 버전 관리 시스템은?</div>
+    <p>답변: 코드의 변경 내역을 추적하고 개발자들이 협업할 수 있는 도구입니다. Git이 대표적인 예입니다.</p>
+    
+    <div>질문 3: 왜 테스팅이 중요한가?</div>
+    <p>답변: 소프트웨어의 오류를 발견하고 품질을 보장하기 위해서입니다. 다양한 테스트 단계가 존재합니다.</p>
+
+    <script>
+        $("div").click(function() {
+            const answer = $(this).next(); // this(클릭된요소)의 next(다음 요소(동위))
+            if(answer.css("display") === "none") {
+                $(this).siblings("p").slideUp(); 
+                answer.slideDown();
+            }
+            else {
+                answer.slideUp();
+            }
+        })
+    </script>
+
+</body>
+</html>
