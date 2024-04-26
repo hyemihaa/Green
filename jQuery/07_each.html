@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07_each.html</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+
+</head>
+<body>
+    <script>
+        const animal = ["강아지", "고양이", "돼지"];
+        
+        for(let item in animal) { // 인덱스만 출력
+            console.log(item);
+        }
+        // 배열을 꺼낼땐 $()에 배열을 넣어줘야 한다.(for each문)
+        $(animal).each(function(index, value) { // 인덱스, 값을 모두 출력
+            console.log("index : " + index);
+            console.log("value : " + value);
+        })
+
+
+        const dog = {
+            name : "봄이",
+            age : 4,
+            addr : "안양"
+        }
+        // 객체를 꺼낼땐 매개변수에 넣어줘야 한다.(for each문)
+        $.each(dog, function(key, value) {
+            console.log("key : " + key);
+            console.log("value : " + value);
+        })
+        console.log("-----------------------------");
+        
+
+        // 객체 배열
+        const animalArr = [
+            {name : "봄이", age : 4, addr : "안양"},
+            {name : "뭉구", age : 8, addr : "서울"},
+            {name : "뭉봄이", age : 12, addr : "인천"}
+        ]
+
+
+        // 이중for-each
+        $.each(animalArr, function(index, obj) {
+            console.log("index : " + index);
+            console.log("object : " + obj); // 객체자체 출력
+            // console.log("object : " + obj.name); // 객체의 값 출력
+            console.log("-----------------------------");
+            
+            $.each(obj, function(key, value) {
+                console.log("key : " + key); // 위 for문으로 꺼낸 객체의 키,키값 출력
+                console.log("value : " + value)
+            })
+            console.log("-----------------------------");
+        })
+    </script>
+
+    <div>
+        <h3>item-1</h3>
+        <h3>item-2</h3>
+        <h3 class="h3-class">item-3</h3>
+        <h3 class="h3-class">item-4</h3>
+        <h3>item-5</h3>
+    </div>
+
+    <script>
+        // div(부모요소)의 h3(자식요소)
+        $("div").children().each(function(index, element) { // h3요소 추출
+            console.log("index : " + index);
+            console.log("element : " + element);
+
+            $(this).addClass("color-" + index); // h3요소 마다 클래스 추가
+
+            // 만약 h3요소중 class만 추출하고 싶은 경우 
+            if($(this).is(".h3-class")) {
+                console.log($(this));
+            }
+        })
+    </script>
+</body>
+</html>
