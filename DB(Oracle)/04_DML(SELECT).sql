@@ -1,0 +1,128 @@
+-- < 서브쿼리 : SQL 쿼리 안에 포함된 또 다른 쿼리 >
+
+-- 단일행 서브쿼리 - 결과값의 데이터(행)가 1개인 서브쿼리
+-- * 단일행 비교 연산자 : =, <, <=, >=, >, !=
+
+-- Donald가 속한 부서의 ID를 찾음
+SELECT DEPARTMENT_ID FROM EMPLOYEES e 
+WHERE FIRST_NAME = 'Donald'; -- 50 출력
+
+-- Donald랑 같은 부서에 속한 직원들의 이름조회
+SELECT FIRST_NAME FROM EMPLOYEES e
+WHERE DEPARTMENT_ID  = 50 ;
+
+-- 위 쿼리문 -> 단일행 서브쿼리문으로 작성
+SELECT FIRST_NAME FROM EMPLOYEES e 
+WHERE DEPARTMENT_ID = (SELECT DEPARTMENT_ID FROM EMPLOYEES e2 WHERE FIRST_NAME = 'Donald'); 
+					  -- 서브쿼리 : Donald가 속한 부서의 ID = 50 
+
+
+-- 부서 ID = 30인 직원들의 평균 급여보다 높은 직원들의 이름 조회
+SELECT FIRST_NAME FROM EMPLOYEES e 
+WHERE SALARY > (SELECT AVG(SALARY) FROM EMPLOYEES e2 WHERE DEPARTMENT_ID = 30);
+ 				-- 서브쿼리 : 부서 id가 30인 직원들의 평균급여 (-> 4150)
+
+
+-- 가장 높은 월급을 받는 직원의 이름 조회
+SELECT FIRST_NAME, MAX(SALARY) FROM EMPLOYEES e 
+GROUP BY FIRST_NAME 
+ORDER BY MAX(SALARY) DESC 
+FETCH FIRST 1 ROW ONLY;
+
+-- 가장 높은 월급을 받는 직원의 이름 조회(서브쿼리)
+SELECT FIRST_NAME FROM EMPLOYEES e 
+WHERE SALARY = (SELECT MAX(SALARY) FROM EMPLOYEES e2);
+				-- 서브쿼리 : employees 에서 가장 높은 월급 (-> 24000)
+
+
+-- 입사일이 가장 빠른 직원의 이름
+SELECT FIRST_NAME FROM EMPLOYEES e 
+WHERE e.HIRE_DATE = (SELECT MIN(HIRE_DATE) FROM EMPLOYEES e2)
+					-- 입사일이 가장 빠른 직원 (입사일이 가장 낮은 == 입사일이 빠른)
+
+
+-- 가장 낮은 location_id를 가진 도시 조회(locations)
+SELECT CITY FROM LOCATIONS l 
+WHERE LOCATION_ID = (SELECT MIN(LOCATION_ID) FROM LOCATIONS l2);
+
+-- 가장 높은 보너스를 받는 직원의 이름 조회(employees)
+SELECT FIRST_NAME FROM EMPLOYEES e 
+WHERE COMMISSION_PCT = (SELECT max(COMMISSION_PCT) FROM EMPLOYEES e2)
+
+
+-- Q1. 실습
+--1. 사수 번호(MANAGER_ID)가 가장 낮은 직원의 이름과 핸드폰 번호를 출력하세요.
+SELECT FIRST_NAME, PHONE_NUMBER FROM EMPLOYEES e 
+WHERE MANAGER_ID = (SELECT MIN(MANAGER_ID) FROM EMPLOYEES e2);
+
+--2. 사번(EMPLOYEE_ID)가 가장 높은 직원의 이름과 사번을 출력하세요.
+SELECT FIRST_NAME, EMPLOYEE_ID FROM EMPLOYEES e 
+WHERE EMPLOYEE_ID = (SELECT MAX(EMPLOYEE_ID) FROM EMPLOYEES e2)
+
+--3. LOCATIONS 테이블에서 COUNTRY_ID가 가장 많은 도시(CITY)의 이름을 출력하세요.
+SELECT CITY FROM LOCATIONS l 
+WHERE COUNTRY_ID = (SELECT COUNTRY_ID FROM LOCATIONS l2 GROUP BY COUNTRY_ID ORDER BY COUNT(COUNTRY_ID) DESC FETCH FIRST 1 ROW ONLY)
+						
+
+
+-- 다중행 서브쿼리 - 결과값의 데이터(행)가 여러 개인 서브 쿼리
+-- * 다중행 비교 연산자 : IN, ALL, ANY, …
+
+-- 부서별 가장 급여가 낮은 직원들의 정보 조회
+SELECT * FROM EMPLOYEES e
+WHERE SALARY IN (SELECT MIN(SALARY) 
+				 FROM EMPLOYEES e 
+				 GROUP BY DEPARTMENT_ID);
+
+-- 부서별 가장 낮은 급여
+SELECT
+	MIN(SALARY)
+FROM
+	EMPLOYEES e
+GROUP BY
+	DEPARTMENT_ID;
+
+
+-- ALL 연산자는 앞에 비교 연산자(>, <, >=, <=)가 붙으며 모두 일치해야 TRUE가 됨 (즉, 모든 값을 대입했을 때 모두 true일 때 반환)
+SELECT * FROM EMPLOYEES e 
+WHERE SALARY >= ALL (SELECT MIN(SALARY) 
+					FROM EMPLOYEES e2 
+					GROUP BY DEPARTMENT_ID);
+
+
+-- ANY 연산자는 해당하는 값 중 하나라도 일치하면 TRUE를 반환함(즉, 모든 값을 대입했을 때 하나라도 true이면 반환)
+SELECT * FROM EMPLOYEES e 
+WHERE SALARY > ANY (SELECT MIN(SALARY) 
+					FROM EMPLOYEES e2 
+					GROUP BY DEPARTMENT_ID);
+
+
+-- Q2 . 실습
+--1. 직원이 가장 많은 부서의 부서명과 인원수를 조회하세요.
+SELECT d.DEPARTMENT_NAME, count(*) FROM EMPLOYEES e
+JOIN  DEPARTMENTS d ON e.DEPARTMENT_ID = d.DEPARTMENT_ID 
+GROUP BY DEPARTMENT_NAME -- 부서별로 인원수 조회
+HAVING COUNT(*) = (SELECT MAX(COUNT(*)) FROM EMPLOYEES e2 GROUP BY DEPARTMENT_ID); 
+
+--2. Luis 또는 Pat과 같은 부서인 직원들을 조회하세요.
+-- 사번(EMPLOYE_ID), 이름(FIRST_NAME), 부서번호(DEPARTMENT_ID)를 조회하세요.
+SELECT EMPLOYEE_ID, FIRST_NAME, DEPARTMENT_ID FROM EMPLOYEES e2 
+WHERE DEPARTMENT_ID IN (SELECT DEPARTMENT_ID FROM EMPLOYEES e WHERE FIRST_NAME IN('Luis', 'Pat'));
+
+--3. 직무명 FI_ACCOUNT의 평균 월급보다 많이 받는 직원들의 이름과 월급을 조회하세요.
+SELECT FIRST_NAME, SALARY FROM EMPLOYEES e
+WHERE SALARY > (SELECT AVG(SALARY) FROM EMPLOYEES e2 WHERE JOB_ID = 'FI_ACCOUNT');
+
+--4. 보너스를 받는 직원들의 평균 월급보다 더 높은 월급을 가진 직원들의 이름과 월급을 조회하세요.
+SELECT FIRST_NAME, SALARY FROM EMPLOYEES e 
+WHERE SALARY > (SELECT AVG(SALARY) FROM EMPLOYEES e2 WHERE COMMISSION_PCT IS NOT NULL);
+
+SELECT * FROM EMPLOYEES e ;
+
+
+
+
+
+
+
+
