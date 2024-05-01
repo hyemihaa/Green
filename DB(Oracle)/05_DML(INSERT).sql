@@ -1,0 +1,64 @@
+-- < INSERT > - 테이블에 새로운 데이터(행)를 추가하는 구문
+
+SELECT * FROM EMPLOYEES e ;
+
+INSERT INTO EMPLOYEES e  VALUES(EMPLOYEES_SEQ.nextval,
+								'길동', 
+								'홍', 
+								'TEST', 
+								'010-1234-5678', 
+								sysdate, 
+								'IT_PROG',
+								10000, 
+								0.5,
+								NULL,
+								60);
+								
+							
+							  
+-- EMPLOYEE_ID, LAST_NAME, EMAIL, HIRE_DATE, JOB_ID
+INSERT INTO EMPLOYEES e (EMPLOYEE_ID,
+						 LAST_NAME,
+						 EMAIL,
+						 HIRE_DATE,
+						 JOB_ID)
+VALUES(EMPLOYEES_SEQ.nextval,
+		'MungBom',
+		'hmhm@test.com',
+		 sysdate,
+		'IT_PROG');
+
+--1. COUNTRIES 테이블에 아래의 조건에 맞춰 데이터를 추가하세요.
+-- COUNTRY_ID : KR
+-- COUNTRY_NAME : Korea
+-- REGION_ID : 3
+INSERT INTO COUNTRIES c (COUNTRY_ID, COUNTRY_NAME, REGION_ID)
+VALUES('KR', 'Korea', 3);
+
+SELECT * FROM COUNTRIES c 
+ 
+--2. LOCATIONS 테이블에 아래의 조건에 맞춰 데이터를 추가하세요.
+-- LOCATION_ID : LOCATIONS_SEQ.NEXTVAL
+-- STREET_ADDRESS : ANYANG SI
+-- POSTAL_CODE : 13902
+-- CITY : MANAN-GU
+INSERT INTO LOCATIONS l (LOCATION_ID, STREET_ADDRESS, POSTAL_CODE, CITY)
+VALUES (LOCATIONS_SEQ.NEXTVAL, 'ANYANG SI', 13902, 'MANAN-GU');
+ 
+SELECT * FROM LOCATIONS l ;
+
+--3. DEPLARTMENTS 테이블에 아래의 조건에 맞춰 데이터를 추가하세요.
+-- DEPARTMENT_ID : EMPLOYEES_SEQ.NETVAL 입력
+-- DEPARTMENT_NAME : 개발자
+-- MANAGER_ID : NULL
+-- LOCATION_ID : 3300
+INSERT INTO DEPARTMENTS d (DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID)
+VALUES (DEPARTMENTS_SEQ.NEXTVAL, '개발자', NULL, 3300);
+
+SELECT * FROM DEPARTMENTS d ;
+	
+	
+	
+	
+	
+	
