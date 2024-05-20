@@ -5,6 +5,9 @@
 <html>
 <head>
 <%@ include file="/views/common/head.jsp"%>
+
+<script type="text/javascript" src="/resources/smarteditor2/js/HuskyEZCreator.js" charset="utf-8"></script> <!-- 스마트에디터 -->
+<script type="text/javascript" src="/resources/js/common/smarteditor.js" charset="utf-8"></script> <!-- 스마트에디터 -->
 </head>
 <body>
 	<%@ include file="/views/common/header.jsp"%>
@@ -21,11 +24,14 @@
         <input type="text" id="author" value="${sessionScope.userName}" disabled>
         
         <label for="content">내용:</label>
-        <textarea id="content" name="content" rows="4" required></textarea>
         
-        <input type="file" name="file">  <!-- file 짝꿍 enctype="multipart/form-data" -->
+        <div id="smarteditor">
+        <textarea id="editorTxt" name="content" rows="4" required></textarea>
+        </div>
         
-        <button type="submit">작성</button>
+        <!-- <input type="file" name="file">   --><!-- file 짝꿍 enctype="multipart/form-data" -> 여러가지 데이터를 담아서 보낸다고 생각 -->
+        
+        <button type="submit" onclick="save()">작성</button>
     </form>
     </section>
     

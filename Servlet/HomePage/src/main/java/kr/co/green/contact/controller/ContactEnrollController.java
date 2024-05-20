@@ -12,10 +12,10 @@ import kr.co.green.contact.model.dto.ContactDto;
 import kr.co.green.contact.model.service.ContactServiceImpl;
 
 @WebServlet("/contact/enroll.do")
-public class ConatctEnrollController extends HttpServlet {
+public class ContactEnrollController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ConatctEnrollController() {
+	public ContactEnrollController() {
         super();
     }
 
@@ -43,6 +43,9 @@ public class ConatctEnrollController extends HttpServlet {
 		
 		if(result == 1) {
 			response.sendRedirect("/");
+		}
+		else {
+			response.sendRedirect("/error.jsp");
 		}
 		
 		

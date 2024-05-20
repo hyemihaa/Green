@@ -21,5 +21,14 @@ public interface BoardService { // 게시판에 필요한 구성?
 	public int setEdit(FreeDtoImpl freeDto);
 //글 삭제
 	public int setDelete(FreeDtoImpl freeDto);
+// 등록된 게시글 no 가져오기
+	public FreeDtoImpl selectNo(FreeDtoImpl freeDto);
+//파일 정보 등록
+	public int fileUpload(FreeDtoImpl freeDto);
+
+// 파일 이름 가져오기
+	public void getFileName(FreeDtoImpl result);
+// 파일 삭제하기
+	public int setFileDelete(int fileNo);
 	
 }

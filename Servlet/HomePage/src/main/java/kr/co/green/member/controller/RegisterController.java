@@ -29,10 +29,11 @@ public class RegisterController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request(요청) : 사용자가 요청한(= 사용자가 보낸) 데이터
-		request.setCharacterEncoding("UTF-8"); // 사용자가 보낸 데이터를 UTF-8로 인코딩
-		//response(응답) : 사용자에게 응답할 데이터
-		response.setContentType("text/html; charset=UTF-8"); // 사용자에게 응답할 데이터를 UTF-8로 인코딩
+//		//request(요청) : 사용자가 요청한(= 사용자가 보낸) 데이터
+//		request.setCharacterEncoding("UTF-8"); // 사용자가 보낸 데이터를 UTF-8로 인코딩
+//		//response(응답) : 사용자에게 응답할 데이터
+//		response.setContentType("text/html; charset=UTF-8"); // 사용자에게 응답할 데이터를 UTF-8로 인코딩
+		
 		
 		String userName = request.getParameter("new-username"); //input name 속성값과 동일하게 설정
 		String userId = request.getParameter("new-userid");

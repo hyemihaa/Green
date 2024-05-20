@@ -3,9 +3,9 @@
     pageEncoding="UTF-8"%>
   <header>
     <h1>나의 홈페이지</h1>
-    <div class="login-signup">
+    <div class="login-signup"><!-- sessionScope : HttpSession에 등록된 데이터의 이름과 값을 저장하고 있는 map객체 -->
     <c:choose>
-    	<c:when test="${sessionScope.userName != null}"> 
+    	<c:when test="${sessionScope.userName != null}">  
     		<a href="/member/logout.do">로그아웃</a>
     	</c:when>
     	<c:otherwise>

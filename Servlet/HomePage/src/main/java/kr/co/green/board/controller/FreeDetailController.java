@@ -27,8 +27,10 @@ public class FreeDetailController extends HttpServlet {
 		//boardNo가지고 게시글의 정보 불러오기
 		//필요한 정보 : 제목, 내용, 작성일, 조회수, 작성자
 		FreeServiceImpl freeService = new FreeServiceImpl();
-		
 		FreeDtoImpl result = freeService.getDetail(boardNo); // 게시글의 번호 가지고 정보를 불러온다 -> 인자값을 boardNo을 넘긴다.
+		
+		freeService.getFileName(result);
+		
 		result.setBoardViews(result.getBoardViews() + 1); //이전 값 + 1
 		request.setAttribute("result", result);
 		

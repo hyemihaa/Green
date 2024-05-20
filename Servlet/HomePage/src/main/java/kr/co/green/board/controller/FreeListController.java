@@ -49,14 +49,14 @@ public class FreeListController extends HttpServlet {
 		// 게시글 번호 구하기
 		int row = listCount - (cpage-1) * boardLimit;
 		
-		// 게시글 목록을 jsp에게 전달해주기(데이터 바인딩)
+		// list 변수를 jsp에게 전달해주기(데이터 바인딩)
 		request.setAttribute("list", list);
 						// "list": 내가 꺼내서 쓸 속성명, list : 내가 보낼 변수(데이터명)
 		request.setAttribute("row", row);
 		request.setAttribute("pi", pi);
 		
 		// 위의 setAttribute을 쓰고자 하는 경로로 이동 -> RequestDispatcher 사용해야 한다. 
-		// RequestDispatcher : jsp로 데이터 담아서 이동
+		// RequestDispatcher(jsp에게 응답하기 위해 필요한 객체) -> 응답할 jsp선택 (즉, 데이터의 정보를 담아서 보낸다)
 		RequestDispatcher view = request.getRequestDispatcher("/views/board/free/freeList.jsp"); //경로이동
 		view.forward(request, response);
 	}

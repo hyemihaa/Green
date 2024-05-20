@@ -108,9 +108,6 @@ public class FreeDao {
 			
 			result = pstmt.executeUpdate();
 			
-			pstmt.close();
-			con.close();
-		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
@@ -242,6 +239,83 @@ public class FreeDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return 0;
+	}
+	
+	public FreeDtoImpl selectNo(FreeDtoImpl freeDto) {
+		String query = "SELECT fb_no FROM free_board "
+					 + "WHERE fb_no = (SELECT MAX(fb_no) FROM free_board WHERE m_no = ?)"; // max(fb_no) : 가장 최근에 작성된 게시물
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, freeDto.getMemberNo());
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int fNo = rs.getInt("fb_no");
+				freeDto.setBoardNo(fNo);
+				return freeDto; // 리턴이 필요없다.. 객체는 같은 주소값을 보기 때문에...
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public int fileUpload(FreeDtoImpl freeDto) {
+		String query = "insert into free_board_upload values(free_board_upload_seq.nextval, ?, ?, ?, ?)";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, freeDto.getFilePath());
+			pstmt.setString(2, freeDto.getFileName());
+			pstmt.setInt(3, freeDto.getMemberNo());
+			pstmt.setInt(4, freeDto.getBoardNo());
+			
+			int result = pstmt.executeUpdate();
+			
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	};
+	
+	public void getFileName(FreeDtoImpl result) {
+		String query = "select fbu_no, fbu_name from free_board_upload "
+				+ "where fb_no = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, result.getBoardNo());
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int no = rs.getInt("fbu_no");
+				String name = rs.getString("fbu_name");
+				
+				result.setFileNo(no);
+				result.setFileName(name);
+			}
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public int setFileDelete(int fileNo) {
+		String query = "delete from free_board_upload where fbu_no = ?";
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, fileNo);
+			
+			int result = pstmt.executeUpdate();
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
 		return 0;
 	}
 }

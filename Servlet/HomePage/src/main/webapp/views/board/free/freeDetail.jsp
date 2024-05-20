@@ -17,6 +17,8 @@
     	<!-- 현재 페이지에서 작성자,작성일,조회수는 고유한 번호가 아니기때문에
     	boardNo를 hidden(현재페이지에서는 필요없는 데이터)으로 가져온다. -->
     	<input type="hidden" name="boardNo" value="${result.boardNo}"/>
+    	<input type="hidden" name="fileNo" value="${result.fileNo}"/>
+    	<input type="hidden" name="fileName" value="${result.fileName}"/>
         <div class="card-header">
             <h2 id="fb-title">${result.boardTitle}</h2>
         </div>
@@ -28,6 +30,8 @@
             </div>
             <hr> 
             <div style="margin-top:20px; margin-bottom: 20px;">
+            <img src="/resources/uploads/freeBoard/${result.fileName}"
+            	width="300px" height="250px">
                 <p class="card-text">
                     ${result.boardContent}
                 </p>

@@ -70,5 +70,29 @@ public class FreeServiceImpl implements BoardService {
 	public int setDelete(FreeDtoImpl freeDto) {
 		return freeDao.setDelete(freeDto);
 	}
+	
+	// 등록된 게시글 no 가져오기
+	@Override
+	public FreeDtoImpl selectNo(FreeDtoImpl freeDto) {
+		return freeDao.selectNo(freeDto);
+	};
+	
+	@Override
+	public int fileUpload(FreeDtoImpl freeDto) {
+		return freeDao.fileUpload(freeDto);
+	}
+	
+	// 파일 이름 가져오기
+	@Override
+	public void getFileName(FreeDtoImpl result) {
+		freeDao.getFileName(result);
+	}
+	
+	@Override
+	public int setFileDelete(int fileNo) {
+		return freeDao.setFileDelete(fileNo);
+	}
+	
+	
 
 }
