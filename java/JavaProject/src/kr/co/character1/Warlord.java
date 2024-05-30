@@ -1,12 +1,12 @@
 package kr.co.character1;
 
-public class Warlord extends Character {
+public class Warlord extends Character { // Character 상속
 	
 	public Warlord() {
-		super(50, 10, 10);
+		super(50, 10, 10); // 부모생성자 참조 ( 부모클래스에 기본생성자가 있어야 사용 가능)
 	}
-	@Override
-	public void attack() {
+	@Override // 메서드 오버라이딩
+	public void attack() { 
 		System.out.println("둔기를 사용합니다.");
 		System.out.println("---------------------------");
 	}

@@ -6,8 +6,8 @@
  - 제목이 비어있다면 alert "제목을 입력해주세요"
  - 설명이 비어있다면 alert "설명을 입력해주세요." */}
  
-
- document.getElementById("add-project-button").addEventListener('click', function() {
+ function getportfolio() {
+    document.getElementById("add-project-button").addEventListener('click', function() {
     const projectTitle = document.getElementById("project-title"); // 제목 ( 요소 자체를 필요로 할때는 .value를 사용하지 않는다.
     const description = document.getElementById("project-description"); // 설명란
     const result = document.getElementById("result"); // div태그
@@ -31,6 +31,7 @@
     result.appendChild(pElement);
 
  })
+}
 
 
 

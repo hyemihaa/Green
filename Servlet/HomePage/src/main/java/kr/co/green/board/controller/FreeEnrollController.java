@@ -81,7 +81,7 @@ public class FreeEnrollController extends HttpServlet {
 			response.sendRedirect("/freeBoard/list.do?cpage=1&category=fb_title&search-text=");
 		}
 	}
-
+	// 파일 이름을 추출하는 메서드
     private String getFileName(Part part) {
         String contentDisposition = part.getHeader("content-disposition");
         String[] tokens = contentDisposition.split(";");

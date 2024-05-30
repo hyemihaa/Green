@@ -10,7 +10,7 @@ public class Ex8_Constructor {
 //		product.name = "사과";
 //		product.price = 5000;
 //		product.count = 3;
-		System.out.println(product.name + product.price + product.count);
+		System.out.println(product.name + " " + product.price + " " + product.count);
 		
 		Ex8_1_Product product1 = new Ex8_1_Product("사과", 5000, 3);
 		
@@ -22,11 +22,14 @@ public class Ex8_Constructor {
 		
 		// Ex8_2_Buy 객체 생성 = 생성자 호출할 때 200000, 130000, 50000, 150000
 		Ex8_2_Buy buy = new Ex8_2_Buy(200000, 130000, 50000, 150000);
+		
+		Ex8_2_Buy buy2 = new Ex8_2_Buy();
+		
 
 		// buyMonitor, buyMouse, buyDesktop 메소드 아무거나 호출해보기
 		buy.buyDesktop();
 		
-		
+		buy2.buyMonitor();
 		
 	}
 

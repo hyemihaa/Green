@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>간단한 홈페이지</title>
+  <link rel="stylesheet" href="./main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+
+</head>
+<body>
+  <header>
+    <h1>나의 홈페이지</h1>
+    <div class="login-signup">
+      <a href="login.html">로그인</a>
+      <a href="register.html">회원가입</a>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="home.html">홈</a></li>
+      <li><a href="introduce.html">소개</a></li>
+      <li><a href="portfolio.html">포트폴리오</a></li>
+      <li class="menu-item">
+        <a href="#">게시판</a>
+        <div class="submenu">
+          <a href="news.html">뉴스 게시판</a>
+          <a href="board.html">자유 게시판</a>
+        </div>
+      </li>
+      <li><a href="contact.html">연락하기</a></li>
+    </ul>
+  </nav>
+
+  <section>
+    <h2>포트폴리오</h2>
+    <div class="project">
+      <div class="input-area" id="result">
+        <input type="text" id="project-title" onkeyup="getportfolio()" placeholder="프로젝트 제목 입력">
+        <textarea id="project-description" placeholder="프로젝트 설명 입력"></textarea>
+        <button id="add-project-button" onclick="getportfolio2()">새로운 프로젝트 추가하기</button>
+        <!-- 제목 h3 -->
+        <!-- 설명 p -->
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>저의 홈페이지에 방문해 주셔서 감사합니다.</p>
+  </footer>
+</body>
+</html>
+
+<script src="./js/portfolio.js"></script>

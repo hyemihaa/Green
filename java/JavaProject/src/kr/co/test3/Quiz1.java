@@ -125,21 +125,21 @@ public class Quiz1 {
 		
 		
 		// Ex5 - 3) 계산기 만들기
-		static public int sum(int[] numbers) {
+		static int sum(int[] numbers) {
 			int sum = 0;
 			for(int i = 0; i < numbers.length; i++) {
 				sum += numbers[i];
 			}
 			return sum;
 		}
-		static public int product(int[] numbers) {
+		static int product(int[] numbers) {
 			int product = numbers[0];
 			for(int i = 1; i < numbers.length; i++) {
 				product *= numbers[i];
 			}
 			return product;
 		}
-		static public int max(int[] numbers) {
+		static int max(int[] numbers) {
 			int max = numbers[0];
 			for(int i = 0; i < numbers.length; i++) {
 				if(max < numbers[i]) {

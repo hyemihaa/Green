@@ -19,7 +19,7 @@ public class CharacterAbility {
 	private int hp = 100; //체력
 	private int mp = 100; //마력
 	
-	public CharacterAbility() {}
+	CharacterAbility() {}
 	
 //	3. setter/getter 생성
 	

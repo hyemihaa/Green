@@ -29,12 +29,13 @@ public class CafeOrder {
 				String name = sc.nextLine();
 				System.out.print("주문 물품 : ");
 				String item = sc.nextLine();
+				
 //     			OrderDTO 객체를 생성하며 생성자로 주문자 이름, 주문 번호, 주문 물품을 전달하여 저장합니다.
 //				orderList에 객체를 추가하고, orderCounter 값을 1증가합니다.
-				OrderDTO OrderDto = new OrderDTO(name, (orderCounter++), item);
+				OrderDTO OrderDto = new OrderDTO(name, orderCounter, item);
 //      		“주문이 접수되었습니다.”를 출력하고 처음 매뉴로 돌아가세요.
 				orderList.add(OrderDto);
-//				orderCounter++; --> orderCounter 값을 1증가합니다
+				orderCounter++; // --> orderCounter 값을 1증가합니다
 				System.out.println("주문이 접수되었습니다.");
 				System.out.println("--------------------------------------------------------------");
 				break;

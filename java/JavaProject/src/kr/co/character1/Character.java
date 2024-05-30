@@ -3,17 +3,18 @@ package kr.co.character1;
 public class Character {
 	public int str, dex, knowledge, level; //인스턴스변수
 	
-	public Character() {}
-	public Character(int str, int dex, int knowledge) {
-		this.str = str;
+	public Character() {} // 기본생성자
+	
+	public Character(int str, int dex, int knowledge) { // 매개변수 있는 생성자
+		this.str = str; // 인스턴스 변수를 가리킴 (참조변수 this) 
 		this.dex = dex;
 		this.knowledge = knowledge;
 		this.level++;
 		
 		
 	}
-	
-	public void walk() {
+	// 메서드 생성
+	public void walk() { 
 		System.out.println("케릭터가 한걸음 걷습니다.");
 	}
 	public void stop() {
