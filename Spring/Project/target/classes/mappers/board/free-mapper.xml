@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="freeMapper"> <!-- Dao : sqlSession.selectList("freeMapper(-> namespace).freeList(-> id)");  -->
+
+	<resultMap type="free" id="freeResultSet"> <!-- type : mybatis에서 설정한 별칭 id : select태그 -->
+		<result column="fb_no" property="boardNo"></result>
+		<result column="fb_title" property="boardTitle"></result>
+		<result column="fb_content" property="boardContent"></result>
+		<result column="fb_indate" property="boardIndate"></result>
+		<result column="fb_views" property="boardViews"></result>
+		<result column="m_name" property="memberName"></result>
+		<result column="m_no" property="memberNo"></result>
+	</resultMap> <!-- column : 실제 컬럼 명  property : Dto설정 변수명 -->
+
+	<select id="freeList" resultMap="freeResultSet"> <!-- Dto로 반환할 경우 resultMap 사용해야 함 -->
+		SELECT fb_no,
+			   fb_title, 
+			   fb_content, 
+			   m_name, 
+			   fb_indate, 
+			   fb_views
+		FROM free_board fb 
+		JOIN member m ON fb.m_no = m.m_no
+		
+		 <!-- 조건식이 여러개 일 때 choose, when -->
+		 <!-- #{searchText} 넘긴 free(Dto)객체의 값을 꺼낼때 / jsp에서는 ${free.searchText} -->
+		<choose>
+			<when test="category.equals('fb_title')">
+				WHERE fb_title LIKE '%' || #{searchText} || '%' 
+			</when>
+			<when test="category.equals('fb_content')">
+				WHERE fb_content LIKE '%' || #{searchText} || '%' 
+			</when>
+		</choose>
+		ORDER BY fb_indate DESC 
+	</select>
+	
+	<!-- _int : 정수형 타입(기본형 변수 int),  int : 객체(Wrapper클래스 : Integer) -->
+	<select id="getListCount" resultType="_int"> <!-- resultType : 반환타입 -->
+		SELECT count(*) FROM free_board
+		
+		<choose>
+			<when test="category.equals('fb_title')">
+				WHERE fb_title LIKE '%' || #{searchText} || '%' 
+			</when>
+			<when test="category.equals('fb_content')">
+				WHERE fb_content LIKE '%' || #{searchText} || '%' 
+			</when>
+		</choose>
+	</select>
+	
+	<select id="getDetail" resultMap="freeResultSet">
+		SELECT fb_no, fb_title, m_name, fb_indate, fb_views, fb_content 
+		FROM free_board fb
+		JOIN member m ON fb.m_no = m.m_no
+		WHERE fb_no = #{boardNo} <!-- freeDto에 있는 변수명 : #{boardNo} -->
+	</select>
+	
+	<update id="addViews">
+		UPDATE free_board
+		SET fb_views = fb_views+1
+		WHERE fb_no = #{boardNo}	
+	</update>
+</mapper>
