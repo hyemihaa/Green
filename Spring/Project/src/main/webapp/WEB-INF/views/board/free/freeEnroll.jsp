@@ -10,13 +10,13 @@
 
 	<section id="post-form">
 		<h2>새 글 작성</h2>
-		<form>
+		<form action="/free/enroll.do" method="POST">
 			<label for="title">제목:</label> 
-			<input type="text" id="title" name="title" required> 
+			<input type="text" id="title" name="boardTitle" required> 
 			<label for="author">글쓴이:</label> 
-			<input type="text" id="author" value="홍길동" disabled> 
+			<input type="text" id="author" value="${sessionScope.memberName}" disabled> 
 			<label for="content">내용:</label>
-			<textarea name="content"></textarea>
+			<textarea name="boardContent"></textarea>
 
 			<button type="submit" onclick="save()">작성</button>
 		</form>

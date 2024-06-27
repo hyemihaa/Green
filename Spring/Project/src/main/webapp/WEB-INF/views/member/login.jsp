@@ -11,11 +11,11 @@
 	<section>
 		<div class="login-form">
 			<h2>로그인</h2>
-			<form>
+			<form action="/member/login.do" method="POST">
 				<label for="username">아이디:</label> 
-				<input type="text" id="username" name="username" required> 
+				<input type="text" id="username" name="memberId" required> 
 				<label for="password">비밀번호:</label>
-				<input type="password" id="password" name="password" required>
+				<input type="password" id="password" name="memberPassword" required>
 
 				<button type="submit">로그인</button>
 			</form>

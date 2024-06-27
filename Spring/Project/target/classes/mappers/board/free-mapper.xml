@@ -62,4 +62,16 @@
 		SET fb_views = fb_views+1
 		WHERE fb_no = #{boardNo}	
 	</update>
+	
+	<insert id="enroll">
+		INSERT INTO FREE_BOARD 
+		VALUES(FREE_BOARD_SEQ.NEXTVAL, 
+			   #{boardTitle},
+			   #{boardContent},
+			   default,
+			   default,
+			   null,
+			   null,
+			   #{memberNo})
+	</insert>
 </mapper>

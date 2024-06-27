@@ -54,5 +54,10 @@ public class FreeServiceImpl implements FreeService{
 		}
 		
 	}
+
+	@Override
+	public int enroll(BoardDto free) {
+		return freeDao.enroll(free);
+	}
 	
 }

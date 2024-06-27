@@ -3,10 +3,13 @@ package kr.co.green.board.controller;
 import java.util.List;
 import java.util.Objects;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -71,4 +74,25 @@ public class FreeController {
 			return "common/error";
 		}
 	}
+	
+	
+	@GetMapping("/enrollForm.do")
+	public String freeEnroll(HttpSession session) {
+		
+		return "/board/free/freeEnroll";
+	}
+	
+	@PostMapping("/enroll.do")
+	public String enroll(BoardDto free, HttpSession session) {
+		free.setMemberNo((int)session.getAttribute("memberNo"));
+		int result = freeService.enroll(free);
+		
+		if(result == 1) {
+			return "redirect:/free/list.do";
+		}
+		else {
+			return "common/error";
+		}
+	}
+	
 }

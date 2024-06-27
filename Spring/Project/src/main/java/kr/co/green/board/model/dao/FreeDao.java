@@ -38,4 +38,8 @@ public class FreeDao {
 		return sqlSession.update("freeMapper.addViews", free);
 	}
 
+	public int enroll(BoardDto free) {
+		return sqlSession.insert("freeMapper.enroll", free);
+	}
+
 }

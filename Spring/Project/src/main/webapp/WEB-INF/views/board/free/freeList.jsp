@@ -21,9 +21,11 @@
             </select> <input type="text" style="width: 500px; flex: 0 0 auto;" class="form-control" name="searchText" placeholder="검색어를 입력해주세요." aria-label="Recipient's username" aria-describedby="button-addon2">
             <button class="btn btn-outline-secondary" type="submit" id="button-addon2" style="height: 46px;">검색</button>
          </form>
-
-         <button onclick="window.location.href = '/form/enrollForm.do'"
+		
+		<c:if test="${sessionScope.memberNo > 0}"> <!-- 로그인한 유저만 -->
+         <button onclick="window.location.href = '/free/enrollForm.do'"
             style="position: absolute; right: 4%;">등록</button>
+		</c:if>
 
       </div>
       <div class="table-container">

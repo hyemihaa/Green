@@ -15,4 +15,7 @@ public interface FreeService {
 	
 	// 게시글 상세보기 -> 게시글 조회 + 조회수 증가
 	BoardDto getDetail(BoardDto free);
+	
+	// 게시글 등록
+	int enroll(BoardDto board);
 }

@@ -80,6 +80,7 @@
         background-color: white;
         border-radius: 5px;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        height: 100%
     }
 
     /* 폼 스타일 */
