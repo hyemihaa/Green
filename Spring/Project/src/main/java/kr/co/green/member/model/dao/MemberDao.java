@@ -27,5 +27,14 @@ public class MemberDao {
 	public MemberDto getInfo(MemberDto member) {
 		return sqlSession.selectOne("memberMapper.getInfo", member);
 	}
+	
+	//오버로딩
+	public MemberDto getInfo(String id) {
+		return sqlSession.selectOne("memberMapper.getInfoApi", id);
+	}
+
+	public int deleteMember(String id) {
+		return sqlSession.delete("memberMapper.deleteMember", id);
+	}
 
 }

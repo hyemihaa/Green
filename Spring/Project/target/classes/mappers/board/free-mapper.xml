@@ -11,6 +11,9 @@
 		<result column="fb_views" property="boardViews"></result>
 		<result column="m_name" property="memberName"></result>
 		<result column="m_no" property="memberNo"></result>
+		<result column="upload_name" property="uploadName"></result>
+		<result column="upload_path" property="uploadPath"></result>
+		<result column="upload_origin_name" property="uploadOriginName"></result>
 	</resultMap> <!-- column : 실제 컬럼 명  property : Dto설정 변수명 -->
 
 	<select id="freeList" resultMap="freeResultSet"> <!-- Dto로 반환할 경우 resultMap 사용해야 함 -->
@@ -23,14 +26,16 @@
 		FROM free_board fb 
 		JOIN member m ON fb.m_no = m.m_no
 		
+		WHERE fb_delete IS NULL
+		
 		 <!-- 조건식이 여러개 일 때 choose, when -->
 		 <!-- #{searchText} 넘긴 free(Dto)객체의 값을 꺼낼때 / jsp에서는 ${free.searchText} -->
 		<choose>
 			<when test="category.equals('fb_title')">
-				WHERE fb_title LIKE '%' || #{searchText} || '%' 
+				AND fb_title LIKE '%' || #{searchText} || '%' 
 			</when>
 			<when test="category.equals('fb_content')">
-				WHERE fb_content LIKE '%' || #{searchText} || '%' 
+				AND	fb_content LIKE '%' || #{searchText} || '%' 
 			</when>
 		</choose>
 		ORDER BY fb_indate DESC 
@@ -39,22 +44,33 @@
 	<!-- _int : 정수형 타입(기본형 변수 int),  int : 객체(Wrapper클래스 : Integer) -->
 	<select id="getListCount" resultType="_int"> <!-- resultType : 반환타입 -->
 		SELECT count(*) FROM free_board
+		WHERE fb_delete IS NULL
 		
 		<choose>
 			<when test="category.equals('fb_title')">
-				WHERE fb_title LIKE '%' || #{searchText} || '%' 
+				AND fb_title LIKE '%' || #{searchText} || '%' 
 			</when>
 			<when test="category.equals('fb_content')">
-				WHERE fb_content LIKE '%' || #{searchText} || '%' 
+				AND fb_content LIKE '%' || #{searchText} || '%' 
 			</when>
 		</choose>
+		
 	</select>
 	
 	<select id="getDetail" resultMap="freeResultSet">
-		SELECT fb_no, fb_title, m_name, fb_indate, fb_views, fb_content 
+		SELECT fb.fb_no, 
+			   fb_title, 
+			   m.m_name, 
+			   fb_indate, 
+			   fb_views, 
+			   fb_content, 
+			   m.m_no,
+			   fu.upload_path,
+			   fu.upload_name
 		FROM free_board fb
 		JOIN member m ON fb.m_no = m.m_no
-		WHERE fb_no = #{boardNo} <!-- freeDto에 있는 변수명 : #{boardNo} -->
+		LEFT JOIN free_upload fu on fb.fb_no = fu.fb_no 
+		WHERE fb.fb_no = #{boardNo} <!-- freeDto에 있는 변수명 : #{boardNo} -->
 	</select>
 	
 	<update id="addViews">
@@ -64,8 +80,16 @@
 	</update>
 	
 	<insert id="enroll">
+	<!-- 
+		1. 시퀀스의 현재 value : 22
+		2. selectKey 안에 있는 SELECT가 실행 되면서 시퀀스 value가 1 증가(23)
+		3. 실행간 경과 값(23) -> 전달받았던 BoardDto의 boardNo변수에 저장
+	 -->
+		<selectKey keyProperty="boardNo" resultType="_int" order="BEFORE"> <!-- keyProperty="boardNo" -> 넘긴 free객체의 boardNo변수 -->
+			SELECT free_board_seq.nextval FROM dual
+		</selectKey>
 		INSERT INTO FREE_BOARD 
-		VALUES(FREE_BOARD_SEQ.NEXTVAL, 
+		VALUES(#{boardNo}, 
 			   #{boardTitle},
 			   #{boardContent},
 			   default,
@@ -74,4 +98,41 @@
 			   null,
 			   #{memberNo})
 	</insert>
+	
+	<insert id="setUpload">
+		INSERT INTO free_upload 
+		VALUES(free_upload_SEQ.nextval,
+			   #{uploadPath}, 
+			   #{uploadName},
+			   #{uploadOriginName},
+			   #{boardNo})
+	</insert>
+	
+	<update id="delete">
+		UPDATE free_board SET fb_delete = sysdate
+		WHERE fb_no = #{boardNo}
+	</update>
+	
+	<select id="getFileName" resultMap="freeResultSet">
+		SELECT upload_path, upload_name FROM free_upload
+		WHERE fb_no = #{boardNo}
+	</select>
+	
+	<update id="edit">
+		UPDATE free_board SET fb_title = #{boardTitle}, 
+							  fb_content = #{boardContent}, 
+							  fb_update = sysdate
+		WHERE fb_no = #{boardNo}
+	</update>
+	
+	<update id="setUploadUpdate">
+		UPDATE free_upload SET upload_path = #{uploadPath},
+							   upload_name = #{uploadName},
+							   upload_origin_name = #{uploadOriginName}
+		WHERE fb_no = #{boardNo}
+	</update>
+
+	
+	
+	
 </mapper>

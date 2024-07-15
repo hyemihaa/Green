@@ -29,11 +29,15 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int setRegister(MemberDto member) {
 		String name = member.getMemberName();
-		String nameRegex = "^[가-힣]+$";
+//		String password = member.getMemberType();
+//		String confirmPassword = member.getConfirmPassword();
 		
-		if(name.matches(nameRegex)) {
-			String password = passwordEncoder.encode(member.getMemberPassword()); // 패스워드 암호화
-			member.setMemberPassword(password);
+		String nameRegex = "^[가-힣]+$";
+//		String passwordRegex = "^(?=.*[a-zA-Z])(?=.*[@$^*])[a-zA-Z0-9@$!^*]{6,20}$";
+		
+		if(name.matches(nameRegex)) { // && password.matches(passwordRegex) && password.equals(confirmPassword)
+			String getPassword = passwordEncoder.encode(member.getMemberPassword()); // 패스워드 암호화
+			member.setMemberPassword(getPassword);
 			return memberDao.setRegister(member);
 		}
 		else {
@@ -52,6 +56,16 @@ public class MemberServiceImpl implements MemberService {
 		else {
 			return null;
 		}
+	}
+
+	@Override
+	public MemberDto getInfo(String id) {
+		return memberDao.getInfo(id);
+	}
+
+	@Override
+	public int deleteMember(String id) {
+		return memberDao.deleteMember(id);
 	}
 		
 }

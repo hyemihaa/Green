@@ -9,4 +9,8 @@ public interface MemberService {
 	public int setRegister(MemberDto member);
 	
 	public MemberDto login(MemberDto member);
+	
+	public MemberDto getInfo(String id);
+	
+	public int deleteMember(String id);
 }

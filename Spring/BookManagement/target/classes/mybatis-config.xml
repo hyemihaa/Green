@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+   <settings>
+      <setting name="jdbcTypeForNull" value="NULL" />
+      <setting name="mapUnderscoreToCamelCase" value="true" />
+   </settings>
+   
+   <typeAliases> <!-- 필수X 편하게 쓰기위한 별칭 설정 -->
+   	<typeAlias type="kr.co.bookstore.model.dto.BookDto" alias="book"></typeAlias>
+   	<typeAlias type="kr.co.bookstore.kpi.model.dto.KpiDto" alias="kpi"></typeAlias>
+   </typeAliases>
+   
+   <mappers>
+   		<mapper resource="/mappers/book/book-mapper.xml"></mapper>
+   		<mapper resource="/mappers/kpi/pool-mapper.xml"></mapper>
+   </mappers>
+  
+</configuration>

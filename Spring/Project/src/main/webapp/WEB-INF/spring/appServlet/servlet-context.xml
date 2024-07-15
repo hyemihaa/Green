@@ -27,17 +27,33 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<beans:bean id="loginCheckInterceptor" class="kr.co.green.common.interceptor.LoginCheckInterceptor" ></beans:bean>
+<!-- 	<beans:bean id="loginCheckInterceptor" class="kr.co.green.common.interceptor.LoginCheckInterceptor" ></beans:bean>
+	
+	<beans:bean id="accessInterceptor" class="kr.co.green.common.interceptor.AccessInterceptor"></beans:bean>
 	
 	<interceptors>
-		<interceptor> <!-- /** :모든경로 -->
+		<interceptor>
+			<mapping path="/free/**"/>
+			<mapping path="/news/**"/>
+			<mapping path="/member/**"/>
+			<exclude-mapping path="/**/*.css"/>
+			<exclude-mapping path="/**/*.js"/>
+			<beans:ref bean="accessInterceptor"></beans:ref>
+		</interceptor>
+		
+
+		<interceptor> /** :모든경로
 			<mapping path="/**/enrollForm.do"></mapping>
 			<exclude-mapping path="/**/*.css"></exclude-mapping>
 			<exclude-mapping path="/**/*.js"></exclude-mapping>
 			<beans:ref bean="loginCheckInterceptor"></beans:ref>
 		</interceptor>
-	</interceptors>
+	</interceptors> -->
 	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>
+	<beans:bean id="restTemplate" class="org.springframework.web.client.RestTemplate"/>
+	<beans:bean id="gson" class="com.google.gson.Gson" />
+	 
 	<context:component-scan base-package="kr.co.green" />
 	
 </beans:beans>
