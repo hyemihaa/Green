@@ -1,28 +1,31 @@
 import { useState } from "react";
 
 export default function StateQuiz2() {
-    const [inputDan, setInputDan] = useState("");
-    const [addResult, setAddResult] = useState(null);
+  const [q2Gugudan, setQ2Gugudan] = useState();
+  const [q2Sum, setQ2Sum] = useState();
+  let sum = 0;
 
-
-    function dan() {
-        const numberValue = parseInt(inputDan);
-
-        if(isNaN(numberValue)) {
-            setAddResult("유효한 숫자가 아닙니다.")
-        } 
-        else {
-            // for(let i = 1; i <= 9; i++) { 
-               
-            // }
-        }
+  function gugudan() {
+    for (let i = 1; i < 10; i++) {
+      sum += q2Gugudan * i;
     }
-    return (
+    setQ2Sum(sum);
+  }
 
-        <>
-        <input type="text" onChange={(e) => setInputDan(e.target.value)}/>
-        <button onClick="dan()">확인</button>
-        <div>{}</div>
-        </>
-    )
+  return (
+    <>
+      <h3>
+        Q2. 몇단을 출력할지 입력받고, 확인 버튼을 누르면 innerHTML을 활용해
+        구구단의 합계를 div 태그에 출력하세요.
+      </h3>
+      <input
+        type="text"
+        id="input-gugudan"
+        onChange={(e) => setQ2Gugudan(e.target.value)}
+      />
+      <button onClick={gugudan}>확인</button>
+      <div id="gugudan">{q2Sum}</div>
+      <hr />
+    </>
+  );
 }
